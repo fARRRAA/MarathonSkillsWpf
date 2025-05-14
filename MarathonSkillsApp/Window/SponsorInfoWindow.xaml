@@ -1,0 +1,38 @@
+﻿<Window x:Class="MarathonSkillsApp.Window.SponsorInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarathonSkillsApp.Window"
+        mc:Ignorable="d"
+        Title="Информация о спонсоре" Height="260" Width="400"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Background="#FFFFFF">
+
+        <!-- Основное содержимое -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+           
+
+            <StackPanel Margin="0" >
+                <!-- Верхняя панель -->
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FFFFFF" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <TextBlock x:Name="CharityNameTextBlock" Text="Наименование спонсора" FontSize="20" FontWeight="Bold" Foreground="#707070"
+        VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+
+                    </StackPanel>
+                </DockPanel>
+                <!-- Логотип -->
+                <Ellipse x:Name="CharityLogoEllipse" Width="80" Height="80" Fill="#FFD700" >
+
+                </Ellipse>
+
+                <!-- Описание -->
+                <TextBlock x:Name="CharityDescriptionTextBlock" TextWrapping="Wrap"
+                           Text="Здесь указывается описание благотворительной организации. Должна быть обеспечена возможность просмотра большого количества информации в данном окне."
+                           FontSize="14" Foreground="#707070" TextAlignment="Center"
+                           HorizontalAlignment="Center" Margin="10,20"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

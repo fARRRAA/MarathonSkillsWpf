@@ -1,0 +1,127 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+      mc:Ignorable="d" 
+                    xmlns:hc="https://handyorg.github.io/handycontrol"
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Marathon Skills 2025 - Login"
+      Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Верхняя панель -->
+            <RowDefinition Height="*"/>   <!-- Основное содержимое -->
+            <RowDefinition Height="Auto"/> <!-- Нижняя панель -->
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Grid Grid.Row="0" Background="#241D70" Height="80">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Back_btn" 
+                    Click="Back_btn_Click" 
+                    Content="Назад" 
+                    Width="100" 
+                    Height="30" 
+                    Margin="20,0,0,0"
+                    Background="#FDC100"
+                    Foreground="Black"
+                    FontFamily="Arial"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center" BorderBrush="{x:Null}"/>
+
+            <TextBlock Grid.Column="1" 
+                     Text="MARATHON SKILLS 2025" 
+                     FontSize="28" 
+                     FontWeight="Bold" 
+                     Foreground="White"
+                     FontFamily="Arial"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"/>
+
+            <Border Grid.Column="2" Width="{Binding ActualWidth, ElementName=Back_btn}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" 
+                      HorizontalAlignment="Center"
+                      Width="500" Height="366">
+
+            <TextBlock Text="Форма авторизации"
+                         FontSize="24" 
+                         FontWeight="Bold" 
+                         Foreground="Black"
+                         FontFamily="Arial"
+                         HorizontalAlignment="Center" 
+                         Margin="0,0,0,20"/>
+
+            <TextBlock Text="Пожалуйста, авторизуйтесь в системе, используя ваш адрес электронной почты и пароль."
+                         FontSize="14" 
+                         Foreground="Black"
+                         FontFamily="Arial"
+                         TextWrapping="Wrap"
+                         HorizontalAlignment="Center" 
+                         TextAlignment="Center" 
+                         Margin="0,0,0,30"/>
+
+
+
+                    <hc:TextBox Name="EmailTextBox" 
+                               
+                               hc:InfoElement.Placeholder="Введите почту" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Введите почту"
+                                Height="72"
+                                FontSize="18" hc:TitleElement.TitleWidth="140"
+                               />
+
+
+                    <hc:PasswordBox Name="PasswordBoxControl" 
+                                  Height="72"                                    Margin="0,20,0,0"
+                                                                   
+                               hc:InfoElement.Placeholder="Введите пароль" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Введите пароль" ShowEyeButton="True" 
+                                FontSize="18" hc:TitleElement.TitleWidth="140"
+                                  />
+
+
+            <!-- Кнопки -->
+            <StackPanel Orientation="Horizontal" 
+                           HorizontalAlignment="Center"
+                           Margin="0,20">
+                <Button x:Name="LoginButton" 
+                           Click="LoginButton_Click" 
+                           Content="Войти" 
+                           Width="120" 
+                           Height="40" 
+                           Background="#00903E" 
+                           Foreground="White"
+                           FontFamily="Arial"
+                           Margin="0,0,10,0"/>
+                <Button x:Name="CancelButton" 
+                           Click="CancelButton_Click" 
+                           Content="Отмена" 
+                           Width="120" 
+                           Height="40" 
+                           Background="#00903E" 
+                           Foreground="White"
+                           FontFamily="Arial"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Нижняя панель -->
+        <Grid Grid.Row="2" Background="#241D70" Height="50">
+            <TextBlock x:Name="CountdownTextBlock" 
+                     FontSize="16"
+                     Foreground="White"
+                     FontFamily="Arial"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>

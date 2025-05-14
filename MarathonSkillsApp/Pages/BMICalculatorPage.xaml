@@ -1,0 +1,122 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.BMICalculatorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1000"
+      Title="BMICalculatorPage"
+      Background="#FFFFFF">
+
+    <DockPanel LastChildFill="True">
+        <!-- Верхняя панель -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF241D70" Height="50">
+            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+            <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
+                VerticalAlignment="Center" Margin="20,0,0,0"/>
+        </StackPanel>
+
+        <!-- Нижняя панель -->
+        <Grid DockPanel.Dock="Bottom" Background="#FF241D70" Height="30">
+            <TextBlock x:Name="CountdownTextBlock"  FontSize="14"
+                Foreground="#E0E0E0" VerticalAlignment="Center" Margin="10,0,0,0" TextAlignment="Center"/>
+        </Grid>
+
+        <!-- Основное содержимое -->
+        <Grid Background="White" Height="543">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.2*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Левая часть -->
+            <StackPanel Grid.Column="0" Margin="0,10,0,0">
+                <TextBlock Text="BMI калькулятор" FontSize="28" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+                <TextBlock Text="BMI обозначает индекс массы тела. Он используется, чтобы дать вам представление о том, является ли Ваш вес- избыточным или идеальным для вашего роста. Это полезно знать, потому что если ваш вес увеличивается или уменьшается за пределами идеального диапазона, у вас повышается риск заболеть."
+                               FontSize="16" Foreground="Black" Margin="0,0,0,18" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <!-- Мужской -->
+                    <Border x:Name="MaleBorder" Width="120" Height="120" BorderBrush="#B6B6B6" BorderThickness="2"
+        Margin="0,0,18,0" CornerRadius="3" Background="White" MouseDown="MaleBorder_MouseDown">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image x:Name="MaleIcon" Source="/Images/male-icon.png" Width="48" Height="70" Margin="0,18,0,0" Stretch="Uniform"/>
+                            <TextBlock x:Name="MaleText" Text="Мужской" FontSize="16" Foreground="Black" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Женский -->
+                    <Border x:Name="FemaleBorder" Width="120" Height="120" BorderBrush="#B6B6B6" BorderThickness="2"
+        Margin="0,0,0,0" CornerRadius="3" Background="White" MouseDown="FemaleBorder_MouseDown">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image x:Name="FemaleIcon" Source="/Images/female-icon.png" Width="48" Height="70" Margin="0,18,0,0" Stretch="Uniform"/>
+                            <TextBlock x:Name="FemaleText" Text="Женский" FontSize="16" Foreground="Black" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <!-- Рост и вес -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Рост:" FontSize="18" Foreground="Black" VerticalAlignment="Center"/>
+                    <TextBox x:Name="HeightTextBox" Width="60" Height="32" FontSize="18" Text="170" Margin="10,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <TextBlock Text="см" FontSize="18" Foreground="Black" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
+                    <TextBlock Text="Вес:" FontSize="18" Foreground="Black" VerticalAlignment="Center"/>
+                    <TextBox x:Name="WeightTextBox" Width="60" Height="32" FontSize="18" Text="70" Margin="18,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <TextBlock Text="кг" FontSize="18" Foreground="Black" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <!-- Кнопки -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+                    <Button x:Name="CalculateButton" Click="CalculateButton_Click" Content="Рассчитать" Background="#FDC100" Width="120" Height="36" FontSize="16" Margin="0,0,18,0" Foreground="White"/>
+                    <Button x:Name="Cancel_btn" Click="Cancel_btn_Click" Content="Отмена" Background="#FDC100" Width="120" Height="36" FontSize="16" Foreground="White"/>
+                </StackPanel>
+            </StackPanel>
+            <!-- Правая часть -->
+            <StackPanel Grid.Column="1" Margin="0,40,0,0" HorizontalAlignment="Center">
+                <Border BorderBrush="#B6B6B6" BorderThickness="2" Width="220" Height="220" CornerRadius="3">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image x:Name="BMICategoryIcon" Source="/Images/bmi-healthy-icon.png" Width="120" Height="120" Stretch="Uniform"/>
+                        <TextBlock x:Name="BMICategoryText" Text="Здоровый" FontSize="20" Foreground="Black" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                    </StackPanel>
+                </Border>
+                <TextBlock x:Name="BMIScoreText" Text="24.2" FontSize="32" Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,18,0,0"/>
+                <!-- Индикатор BMI -->
+                <Grid Margin="0,18,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Цветная шкала -->
+                    <Grid Grid.Row="0" Height="16" Width="350">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.Column="0" Fill="#FFD600" RadiusX="3" RadiusY="3"/>
+                        <Rectangle Grid.Column="1" Fill="#3ADF00"/>
+                        <Rectangle Grid.Column="2" Fill="#FFD600"/>
+                        <Rectangle Grid.Column="3" Fill="#FF2222" RadiusX="3" RadiusY="3"/>
+                    </Grid>
+                    <!-- Стрелка -->
+                    <Canvas Grid.Row="1" Height="18" Width="350">
+                        <Polygon x:Name="ArrowPolygon" Points="0,0 10,0 5,10" Fill="Black"/>
+                    </Canvas>
+                </Grid>
+                <!-- Подписи к шкале -->
+                <Grid Margin="0,8,0,0" Width="350">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Недостаточный" FontSize="9" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="Здоровый" FontSize="9" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Text="Избыточный" FontSize="9" Foreground="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Text="Ожирение" FontSize="9" Foreground="Black" HorizontalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Page>

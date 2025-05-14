@@ -1,0 +1,76 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.MoreInformationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="More Information Page">
+
+    <DockPanel LastChildFill="True">
+        <!-- Top Panel -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#003366" Height="50">
+            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+            <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
+                       VerticalAlignment="Center" Margin="20,0,0,0" FontFamily="Arial"/>
+        </StackPanel>
+
+        <!-- Bottom Panel -->
+        <Grid DockPanel.Dock="Bottom" Background="#003366" Height="30">
+            <TextBlock x:Name="CountdownTextBlock" FontSize="14"
+                       Foreground="#E0E0E0" VerticalAlignment="Center" Margin="10,0,0,0" TextAlignment="Center" FontFamily="Arial"/>
+        </Grid>
+
+        <!-- Main Content -->
+        <Grid Background="White">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <TextBlock Text="Подробная информация" FontSize="24" FontWeight="Bold"
+                           Foreground="Black" HorizontalAlignment="Center" Margin="0,0,0,20" FontFamily="Arial"/>
+
+                <Grid HorizontalAlignment="Center" Width="430">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="210"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Первая колонка -->
+                    <Button x:Name="InfoPage" Grid.Row="0" Grid.Column="0" Click="InfoPage_Click" 
+                            Content="Marathon Skills 2016" Height="60" Background="#FF00903E" 
+                            BorderThickness="0" Foreground="White"/>
+
+                    <Button x:Name="HowLong" Grid.Row="2" Grid.Column="0" Click="HowLong_Click" 
+                            Content="Насколько долгий марафон" Height="60" Background="#FF00903E" 
+                            BorderThickness="0" Foreground="White"/>
+
+                    <Button x:Name="ChariryList" Grid.Row="4" Grid.Column="0" Click="ChariryList_Click" 
+                            Height="60" BorderThickness="0" Background="#FF00903E" Foreground="White" HorizontalAlignment="Left" Margin="0,5,0,5" Width="210">
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                                   Text="Список благотворительных организаций" Foreground="White"/>
+                    </Button>
+
+                    <!-- Вторая колонка -->
+                    <Button Grid.Row="0" Grid.Column="2" 
+                            Content="Предыдущие результаты" Height="60" Background="#FF00903E" 
+                            BorderThickness="0" Foreground="White" Click="Button_Click_1"/>
+
+                    <Button x:Name="BMI_Calc" Grid.Row="2" Grid.Column="2" Click="BMI_Calc_Click" 
+                            Content="BMI калькулятор" Height="60" Background="#FF00903E" 
+                            BorderThickness="0" Foreground="White"/>
+
+                    <Button x:Name="BMR_Calc" Grid.Row="4" Grid.Column="2" Click="BMR_Calc_Click" 
+                            Content="BMR калькулятор" Height="60" Background="#FF00903E" 
+                            BorderThickness="0" Foreground="White"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Page>

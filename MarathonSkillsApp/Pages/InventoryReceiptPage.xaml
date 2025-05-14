@@ -1,0 +1,104 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.InventoryReceiptPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="InventoryReceiptPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Grid Grid.Row="0" Background="#003366" Height="80">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnBack" 
+                    Content="Назад" 
+                    Click="btnBack_Click" 
+                    Margin="20"
+                    Foreground="White"
+                    Width="100"
+                    Height="40"
+                    Background="#FDC100"/>
+
+            <TextBlock Grid.Column="1" 
+                       Text="MARATHON SKILLS 2026" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       FontFamily="Arial"/>
+
+            <Button x:Name="btnLogout" 
+                    Grid.Column="2"
+                    Content="Logout"
+                    Click="btnLogout_Click"
+                    Margin="20"
+                    Foreground="White"
+                    Width="100"
+                    Height="40"
+                    Background="#FDC100"/>
+        </Grid>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Поступление инвентаря"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20"
+                       FontFamily="Arial"/>
+
+            <DataGrid x:Name="dgInventoryReceipt" AutoGenerateColumns="False" ColumnWidth="*" Margin="0,52,0,71" Grid.RowSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding ItemName}" />
+                    <DataGridTextColumn Header="Остаток" Binding="{Binding CurrentStock}" />
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <!-- Кнопка Сохранить -->
+        <Button x:Name="btnSave"
+                Grid.Row="2"
+                Content="Сохранить"
+                Click="btnSave_Click"
+                Width="180"
+                Foreground="White"
+                Height="40"
+                Margin="0,10,0,20"
+                Background="#FDC100"
+                HorizontalAlignment="Center"
+                FontFamily="Arial"/>
+
+        <!-- Нижняя панель -->
+        <Grid Grid.Row="3" Background="#003366">
+            <TextBlock x:Name="CountdownTextBlock"
+                       Margin="20"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Foreground="White"
+                       FontFamily="Arial"/>
+        </Grid>
+    </Grid>
+</Page>

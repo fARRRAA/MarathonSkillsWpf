@@ -1,0 +1,177 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.VolunteerManagementPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Volunteer Management">
+
+    <Page.Resources>
+        <!-- Стиль для кнопок -->
+        <Style x:Key="YellowButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FDC100"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Height" Value="30"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFD700"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для DataGrid -->
+        <Style x:Key="ModernDataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F5F5F5"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#241D70"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                        <Setter Property="BorderBrush" Value="#00903E"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="10,5"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для ComboBox -->
+        <Style x:Key="ModernComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#241D70"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель (синяя) -->
+        <Border Grid.Row="0" Background="#241D70" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Назад" Width="100" Height="30"
+                        Style="{StaticResource YellowButtonStyle}"
+                        Click="BackButton_Click" Grid.Column="0" Foreground="White"/>
+
+                <TextBlock Grid.Column="1" 
+                          Text="MARATHON SKILLS 2025"
+                          FontSize="18" FontWeight="Bold" 
+                          Foreground="White" FontFamily="Arial"
+                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <Button x:Name="LogOut_btn" 
+                        Content="Выйти" 
+                        Width="100" Height="30"
+                        Style="{StaticResource YellowButtonStyle}"
+                        Grid.Column="2"
+                        Click="LogOut_btn_Click" Foreground="White"/>
+            </Grid>
+        </Border>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <TextBlock Grid.Row="0" Text="Управление волонтерами" 
+                       FontSize="24" FontWeight="Bold"
+                       HorizontalAlignment="Center" Margin="0,10,0,20"/>
+
+            <!-- Панель управления -->
+            <StackPanel Grid.Row="1" Orientation="Horizontal" 
+                        HorizontalAlignment="Left" Margin="10,0,0,15">
+                <TextBlock Text="Сортировать по:" VerticalAlignment="Center" 
+                           Margin="0,0,10,0" FontSize="14"/>
+
+                <ComboBox x:Name="SortComboBox" SelectedIndex="0" 
+                          Style="{StaticResource ModernComboBoxStyle}"
+                          Width="150"
+                          SelectionChanged="SortComboBox_SelectionChanged">
+                    <ComboBoxItem Tag="LastName">Фамилии</ComboBoxItem>
+                    <ComboBoxItem Tag="FirstName">Имени</ComboBoxItem>
+                    <ComboBoxItem Tag="Country">Стране</ComboBoxItem>
+                    <ComboBoxItem Tag="Gender">Полу</ComboBoxItem>
+                </ComboBox>
+
+                <Button Content="Загрузка волонтеров" 
+                        Style="{StaticResource YellowButtonStyle}"
+                        Width="150"
+                        Click="LoadVolunteersButton_Click" Foreground="White"/>
+
+                <Button Content="Обновить" 
+                        Style="{StaticResource YellowButtonStyle}"
+                        Width="100"
+                        Click="RefreshButton_Click" Foreground="White"/>
+            </StackPanel>
+
+            <!-- Счетчик волонтеров -->
+            <TextBlock Grid.Row="1" Text="{Binding VolunteerCountText}" 
+           FontWeight="Bold" HorizontalAlignment="Right" 
+           VerticalAlignment="Center" Margin="0,0,20,0"
+           FontSize="14"/>
+
+            <!-- Таблица волонтеров -->
+            <DataGrid x:Name="VolunteersDataGrid" Grid.Row="2"
+                      AutoGenerateColumns="False" 
+                      ItemsSource="{Binding Volunteers}"
+                      Style="{StaticResource ModernDataGridStyle}"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                    <DataGridTextColumn Header="Страна" Binding="{Binding Country.CountryName}" Width="*"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Нижняя панель (синяя) -->
+        <Border Grid.Row="2" Background="#241D70" Padding="10">
+            <TextBlock x:Name="CountdownTextBlock" 
+                       Text="18 дней 8 часов и 17 минут до старта марафона!"
+                       Foreground="White" FontSize="14"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Page>

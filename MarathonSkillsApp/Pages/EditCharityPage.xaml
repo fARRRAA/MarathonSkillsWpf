@@ -1,0 +1,102 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.EditCharityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="EditCharityPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header с кнопкой Назад -->
+        <Border Grid.Row="0" Background="#241D70" Padding="10" Margin="0,0,0,31">
+            <Grid>
+                <Button x:Name="BackButton" 
+                        Content="Назад" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top"
+                        Margin="10,10,0,0"
+                        Click="BackButton_Click" Background="#FFFDC100" Height="30" Width="70" Foreground="White" />
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="MARATHON SKILLS 2025" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="White" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,10" Height="30" FontFamily="Arial"/>
+                    <TextBlock Text="Редактирование благотворительной организации"
+                               FontSize="18"
+                               Foreground="White"
+                               HorizontalAlignment="Center" FontFamily="Arial"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20" Margin="0,91,0,0" Grid.RowSpan="2">
+            <Border Background="White" CornerRadius="5" Padding="20" Width="700" HorizontalAlignment="Center">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Левая часть: Наименование и описание -->
+                    <StackPanel Grid.Column="0" VerticalAlignment="Top">
+                        <TextBlock Text="Наименование:" FontWeight="Bold" Foreground="#241D70" FontFamily="Arial"/>
+                        <TextBox Text="{Binding Name}" x:Name="NameTextBox" Margin="0,5,0,20" Height="35" FontFamily="Arial"/>
+                        <TextBlock Text="Описание:" FontWeight="Bold" Foreground="#241D70" FontFamily="Arial"/>
+                        <TextBox Text="{Binding Description}" x:Name="DescriptionTextBox" Margin="0,5,0,20" Height="100" 
+                                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontFamily="Arial"/>
+                        <TextBlock Text="Описание благотворительной организации" FontStyle="Italic" Foreground="#666" FontFamily="Arial"/>
+                    </StackPanel>
+
+                    <!-- Правая часть: Логотип -->
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0">
+                        <TextBlock Text="Оставьте поле 'Логотип файл' пустым если вы не хотите загружать логотип" 
+                                   FontStyle="Italic" Margin="0,0,0,10" Foreground="#999" FontFamily="Arial"/>
+                        <TextBlock Text="Логотип файл:" FontWeight="Bold" Foreground="#241D70" FontFamily="Arial"/>
+                        <DockPanel Margin="0,5,0,10">
+                            <TextBox Text="{Binding LogoPath}" x:Name="LogoPathTextBox" Height="35" DockPanel.Dock="Left" Width="140"
+                                     Foreground="#aaa" IsReadOnly="True" FontFamily="Arial"/>
+                            <Button Content="Просмотр..." Margin="10,0,0,0" Width="120" DockPanel.Dock="Right"
+                                    Click="BrowseButton_Click" Background="#FFFDC100" Foreground="White"/>
+                        </DockPanel>
+                        <TextBlock Text="Текущий логотип:" Margin="0,10,0,5" FontFamily="Arial"/>
+                        <Border Width="150" Height="150" BorderBrush="#DDD" BorderThickness="1" 
+                                CornerRadius="75" HorizontalAlignment="Left" Margin="0,0,0,20">
+                            <Ellipse x:Name="LogoImage" Fill="White" Stroke="#FFFDC100"/>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Кнопки снизу, на всю ширину -->
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
+                        <Button Content="Сохранить" Width="150" Margin="0,0,20,0" Click="SaveButton_Click"
+                                Background="#FF689F38" Foreground="White" FontFamily="Arial"/>
+                        <Button Content="Отмена" Width="150" Click="CancelButton_Click"
+                                Background="#FF689F38" Foreground="White" FontFamily="Arial"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" Background="#241D70" Padding="10">
+            <TextBlock x:Name="CountdownText" 
+                       Foreground="White"
+                       FontSize="14"
+                       HorizontalAlignment="Center" FontFamily="Arial"/>
+        </Border>
+    </Grid>
+</Page>

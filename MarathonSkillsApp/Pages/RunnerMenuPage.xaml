@@ -1,0 +1,145 @@
+﻿<Page x:Class="MarathonSkillsApp.Pages.RunnerMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="Marathon Skills 2025 - Runner Menu"
+      Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Верхняя панель -->
+            <RowDefinition Height="*"/>
+            <!-- Основное содержимое -->
+            <RowDefinition Height="Auto"/>
+            <!-- Нижняя панель -->
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <Grid Grid.Row="0" Background="#241D70" Height="80">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="Back_btn" 
+                    Click="Back_btn_Click" 
+                    Content="Назад" 
+                    Width="100"
+                    Height="30"
+                    Margin="20,0,0,0"
+                    Foreground="White"
+                    Background="#FDC100"
+                    FontFamily="Arial"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Column="1" 
+                      Text="MARATHON SKILLS 2025"
+                      FontSize="28"
+                      FontWeight="Bold"
+                      Foreground="White"
+                      FontFamily="Arial"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"/>
+
+            <Button x:Name="LogOut_btn" 
+                    Grid.Column="2"
+                    Click="LogOut_btn_Click" 
+                    Content="Выйти" 
+                    Width="100"
+                    Height="30"
+                    Margin="0,0,20,0"
+                    Foreground="White"
+                    Background="#FDC100"
+                    FontFamily="Arial"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1" Margin="20,10,20,40">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="269" Margin="0,10,0,0">
+                <TextBlock Text="Меню бегуна"
+                         FontSize="24"
+                         FontWeight="Bold"
+                         FontFamily="Arial"
+                         HorizontalAlignment="Center"
+                         Margin="0,0,0,10"/>
+                <WrapPanel Height="240">
+                    <StackPanel Width="300" Margin="20">
+                        <Button x:Name="RegistForEvent"
+                                Content="Регистрация на марафон"
+                                Click="RegistForEvent_Click" 
+                                Background="#00903E"
+                                Foreground="White"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                Height="50"
+                                Margin="0,10"
+                                Padding="10"/>
+
+                        <Button x:Name="EditProfile"
+                                Content="Редактирование профиля"
+                                Click="EditProfile_Click" 
+                                Background="#00903E"
+                                Foreground="White"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                Height="50"
+                                Margin="0,10"
+                                Padding="10"/>
+
+                        <Button x:Name="Contacts_btn"
+                                Content="Контакты"
+                                Click="Contacts_btn_Click" 
+                                Background="#00903E"
+                                Foreground="White"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                Height="50"
+                                Margin="0,10"
+                                Padding="10"/>
+                    </StackPanel>
+
+                    <StackPanel Width="300" Margin="20">
+                        <Button x:Name="MyResult"
+                                Content="Мои результаты"
+                                Click="MyResult_Click" 
+                                Background="#00903E"
+                                Foreground="White"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                Height="50"
+                                Margin="0,10"
+                                Padding="10"/>
+
+                        <Button Content="Мой спонсор"
+                                Background="#00903E"
+                                Foreground="White"
+                                FontFamily="Arial"
+                                FontSize="16"
+                                Height="50"
+                                Margin="0,10"
+                                Padding="10" Click="Button_Click"/>
+                    </StackPanel>
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Нижняя панель -->
+        <Grid Grid.Row="2" Background="#241D70" Height="50">
+            <TextBlock x:Name="CountdownTextBlock"
+                      FontSize="16"
+                      Foreground="White"
+                      FontFamily="Arial"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>
