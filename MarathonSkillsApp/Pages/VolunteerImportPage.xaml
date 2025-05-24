@@ -1,4 +1,4 @@
-﻿<Page x:Class="MarathonSkillsApp.Pages.VolunteerImportPage"
+<Page x:Class="MarathonSkillsApp.Pages.VolunteerImportPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -51,6 +51,7 @@
                 <TextBlock Foreground="Black" Text="2. FirstName – имя" Margin="10,2"/>
                 <TextBlock Foreground="Black" Text="3. LastName – фамилия" Margin="10,2"/>
                 <TextBlock Foreground="Black" Text="4. CountryCode – код страны (например, RU, US, BR и т.д.)" Margin="10,2"/>
+                <TextBlock Foreground="Black" Text="5. Gender – пол" Margin="10,2"/>
             </StackPanel>
 
             <TextBlock Text="Пример строки: 123,John,Doe,US"

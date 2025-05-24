@@ -1,4 +1,4 @@
-﻿using MarathonSkillsApp.DB_model;
+using MarathonSkillsApp.DB_model;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -30,7 +30,7 @@ namespace MarathonSkillsApp.Pages
         public VolunteerImportPage()
         {
             InitializeComponent();
-            this.Loaded += Page_Loaded;
+            this.Laded += Page_Loaded;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -115,7 +115,7 @@ namespace MarathonSkillsApp.Pages
                                 string firstName = parts[1].Trim();
                                 string lastName = parts[2].Trim();
                                 string countryCode = parts[3].Trim();
-                                string genderRaw = parts[4].Trim();
+                                string genderRaw = parts[4].Trim().ToUpper();
                                 string gender = genderRaw.Length == 1 ? (genderRaw == "M" ? "Male" : "Female") : genderRaw;
 
                                 if (!int.TryParse(idStr, out int volunteerId))
