@@ -152,16 +152,8 @@ namespace MarathonSkillsApp.Pages
 
                             MessageBox.Show($"Импорт завершён!\nДобавлено: {added}\nОбновлено: {updated}", "Успешно");
 
-                            // Вместо создания новой страницы, обновляем текущую
-                            var currentPage = NavigationService.Content as VolunteerManagementPage;
-                            if (currentPage != null)
-                            {
-                                currentPage.ReloadVolunteers();
-                            }
-                            else
-                            {
-                                NavigationService.Navigate(new VolunteerManagementPage());
-                            }
+                            // После импорта всегда переходим на страницу волонтёров, чтобы был актуальный список
+                            NavigationService.Navigate(new VolunteerManagementPage());
                         }
                         catch (Exception saveEx)
                         {
@@ -176,8 +168,6 @@ namespace MarathonSkillsApp.Pages
                 MessageBox.Show("Ошибка при обработке CSV: " + ex.Message);
             }
         }
-
-
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {

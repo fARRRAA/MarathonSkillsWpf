@@ -61,7 +61,6 @@ namespace MarathonSkillsApp.Pages
                 if (user != null)
                 {
                     CurrentUser.Email = user.Email;
-                    MessageBox.Show($"Добро пожаловать, {user.FirstName} {user.LastName}!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
 
                     switch (user.RoleId.Trim())
                     {
@@ -98,6 +97,22 @@ namespace MarathonSkillsApp.Pages
             NavigationService.GoBack();
         }
 
+        private void Admin_Click(object sender, RoutedEventArgs e)
+        {
+            EmailTextBox.Text = "leila.azedeva@mskills.com";
+            PasswordBoxControl.Password = "MvTQ3itX";
+        }
 
+        private void Coordinator_Click(object sender, RoutedEventArgs e)
+        {
+            EmailTextBox.Text = "super@bk.ru";
+            PasswordBoxControl.Password = "Dalimali06!";
+        }
+
+        private void Runner_Click(object sender, RoutedEventArgs e)
+        {
+            EmailTextBox.Text = "dnix171@seeley.net";
+            PasswordBoxControl.Password = "iy$4DNN@";
+        }
     }
 }

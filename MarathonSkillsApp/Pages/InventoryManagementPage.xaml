@@ -49,7 +49,7 @@
                     Height="30"
                     Margin="10"
                     Style="{StaticResource ButtonStyle}"
-                    Click="btnBack_Click" Foreground="White"/>
+                    Click="btnBack_Click" Foreground="White" BorderBrush="{x:Null}"/>
 
             <TextBlock Grid.Column="1" 
                        Text="MARATHON SKILLS 2025" 
@@ -67,7 +67,7 @@
                     Height="30"
                     Margin="10"
                     Style="{StaticResource ButtonStyle}"
-                    Click="btnLogout_Click" Foreground="White"/>
+                    Click="btnLogout_Click" Foreground="White" BorderBrush="{x:Null}"/>
         </Grid>
 
         <!-- Основной контент -->

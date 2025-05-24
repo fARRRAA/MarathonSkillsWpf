@@ -11,7 +11,7 @@
     <DockPanel LastChildFill="True">
         <!-- Top Panel -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF241D70" Height="50">
-            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White" BorderBrush="{x:Null}"/>
             <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
            VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>
@@ -66,19 +66,19 @@
 
                     <!-- Вторая строка фильтров -->
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Пол:" VerticalAlignment="Center" Margin="0,7,5,0" Foreground="Black" FontSize="14" FontFamily="Arial"/>
-                    <ComboBox x:Name="GenderComboBox" Grid.Row="1" Grid.Column="1" Width="70" Height="26" VerticalAlignment="Center" Margin="0,7,5,0" FontSize="14" FontFamily="Arial">
+                    <ComboBox x:Name="GenderComboBox" Grid.Row="1" Grid.Column="1" Width="130" Height="26" VerticalAlignment="Center" Margin="0,7,5,0" FontSize="14" FontFamily="Arial">
 
                     </ComboBox>
                     <TextBlock Grid.Row="1" Grid.Column="2" Text=""  Margin="0,7,0,0"/>
 
                     <TextBlock Grid.Row="1" Grid.Column="3" Text="Категория:" VerticalAlignment="Center" Margin="0,7,5,0" Foreground="Black" FontSize="14" FontFamily="Arial"/>
-                    <ComboBox x:Name="CategoryComboBox" Grid.Row="1" Grid.Column="4" Width="70" Height="26" VerticalAlignment="Center" Margin="0,7,5,0" FontSize="14" FontFamily="Arial">
+                    <ComboBox x:Name="CategoryComboBox" Grid.Row="1" Grid.Column="4" Width="130" Height="26" VerticalAlignment="Center" Margin="0,7,5,0" FontSize="14" FontFamily="Arial">
 
                     </ComboBox>
                     <TextBlock Grid.Row="1" Grid.Column="5" Text=""  Margin="0,7,0,0"/>
 
                     <!-- Кнопка поиска -->
-                    <Button x:Name="SearchButton" Click="SearchButton_Click" Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" Content="Поиск" Width="60" Height="26" Margin="10,7,0,0" FontSize="14" FontFamily="Arial" VerticalAlignment="Center" Background="#FDC100" Foreground="White"/>
+                    <Button x:Name="SearchButton" Click="SearchButton_Click" Grid.Row="0" Grid.Column="6" Grid.RowSpan="2" Content="Поиск" Width="130" Height="26" Margin="10,7,0,0" FontSize="14" FontFamily="Arial" VerticalAlignment="Center" Background="#FDC100" Foreground="White"/>
                 </Grid>
 
                 <!-- Информация о количестве бегунов -->

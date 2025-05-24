@@ -54,7 +54,7 @@ namespace MarathonSkillsApp.Pages
                 foreach (var charity in charities)
                 {
                     // Обёртка для организации
-                    var dockPanel = new DockPanel { Margin = new Thickness(0, 10, 0, 10) };
+                    var dockPanel = new DockPanel { Margin = new Thickness(30, 20, 30, 10) };
 
                     // Эллипс с изображением (если есть логотип)
                     var ellipse = new Ellipse
@@ -97,7 +97,7 @@ namespace MarathonSkillsApp.Pages
                     dockPanel.Children.Add(ellipse);
 
                     // Текстовое описание
-                    var stack = new StackPanel { Margin = new Thickness(10, 0, 0, 0) };
+                    var stack = new StackPanel { Margin = new Thickness(30, 0, 30, 0) };
                     DockPanel.SetDock(stack, Dock.Right);
 
                     var nameText = new TextBlock
@@ -113,7 +113,10 @@ namespace MarathonSkillsApp.Pages
                         Text = charity.CharityDescription,
                         FontSize = 14,
                         TextWrapping = TextWrapping.Wrap,
-                        Foreground = Brushes.Black
+                        Foreground = Brushes.Black,
+                        Width=600,
+                        HorizontalAlignment=HorizontalAlignment.Left
+                     
                     };
 
                     stack.Children.Add(nameText);

@@ -191,8 +191,8 @@ namespace MarathonSkillsApp.Pages
     {
         public string Name { get; set; }
         public string ImageFile { get; set; }
-        public string Type { get; set; } // "speed" или "length"
-        public double Value { get; set; } // скорость (км/ч) или длина (м)
+        public string Type { get; set; } 
+        public double Value { get; set; } 
     }
 }
 

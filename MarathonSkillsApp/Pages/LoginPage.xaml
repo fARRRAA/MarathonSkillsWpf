@@ -77,7 +77,7 @@
                                hc:InfoElement.Placeholder="Введите почту" hc:TitleElement.TitlePlacement="Top"
                                 hc:InfoElement.Title="Введите почту"
                                 Height="72"
-                                FontSize="18" hc:TitleElement.TitleWidth="140"
+                                FontSize="16" hc:TitleElement.TitleWidth="140"
                                />
 
 
@@ -86,7 +86,7 @@
                                                                    
                                hc:InfoElement.Placeholder="Введите пароль" hc:TitleElement.TitlePlacement="Top"
                                 hc:InfoElement.Title="Введите пароль" ShowEyeButton="True" 
-                                FontSize="18" hc:TitleElement.TitleWidth="140"
+                                FontSize="16" hc:TitleElement.TitleWidth="140"
                                   />
 
 
@@ -111,6 +111,34 @@
                            Background="#00903E" 
                            Foreground="White"
                            FontFamily="Arial"/>
+                <Button x:Name="Admin" 
+                        
+            Click="Admin_Click" 
+            Content="A" 
+            Width="30" 
+            Height="30" 
+            Background="White" 
+            Foreground="Black"
+            FontFamily="Arial"
+            Margin="10,0,10,0" BorderBrush="Black"/>
+                <Button x:Name="Coordinator" 
+Click="Coordinator_Click" 
+Content="C" 
+Width="30" 
+Height="30" 
+Background="White" 
+Foreground="Black"
+FontFamily="Arial"
+Margin="0,0,10,0" BorderBrush="Black"/>
+                <Button x:Name="Runner" 
+Click="Runner_Click" 
+Content="R" 
+Width="30" 
+Height="30" 
+Background="White" 
+Foreground="Black"
+FontFamily="Arial"
+Margin="0,0,10,0" BorderBrush="Black"/>
             </StackPanel>
         </StackPanel>
 

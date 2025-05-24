@@ -13,13 +13,13 @@
         <!-- Верхняя панель -->
         <DockPanel LastChildFill="False" Background="#2B2B6F" Height="50" VerticalAlignment="Top">
             <Button Content="Назад" Width="65" Margin="10,0" Click="BackButton_Click" Height="26"
-                    Background="#FFD700" Foreground="White" FontWeight="Bold"/>
+                    Background="#FFD700" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}"/>
             <TextBlock Text="MARATHON SKILLS 2016" 
                        Foreground="White" FontWeight="Bold" FontSize="22"
                        VerticalAlignment="Center" HorizontalAlignment="Center" 
                        Margin="0,0,100,0" />
             <Button Content="Выход" Width="52" Margin="10,0" DockPanel.Dock="Right" Height="26" Click="Button_Click"
-                    Background="#FFD700" Foreground="White" FontWeight="Bold"/>
+                    Background="#FFD700" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}"/>
         </DockPanel>
 
         <StackPanel Margin="20,70,20,70" HorizontalAlignment="Center">

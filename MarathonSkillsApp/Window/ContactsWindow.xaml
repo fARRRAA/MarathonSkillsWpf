@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarathonSkillsApp.Window"
         mc:Ignorable="d"
-        Title="Контакты" Height="260" Width="400"
+        Title="Контакты" Height="360" Width="500"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-    <Grid Background="#FFFFFF">
+    <Grid Background="#FFFFFF" >
         <!-- Заголовок и кнопка закрытия -->
         <DockPanel LastChildFill="True">
             <Grid DockPanel.Dock="Top" Background="#FFFFFF" Height="50">
@@ -24,7 +24,7 @@
         </DockPanel>
 
         <!-- Контент -->
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7">
             <TextBlock TextWrapping="Wrap"
                        Text="Для получения дополнительной информации пожалуйста свяжитесь с координаторами"
                        FontSize="14" Foreground="#707070" TextAlignment="Center" Margin="0,10"/>

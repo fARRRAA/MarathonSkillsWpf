@@ -28,7 +28,7 @@
                         Width="100" Height="30"
                         Background="#FDC100" Foreground="White"
                         FontFamily="Arial" FontWeight="Bold"
-                        Click="Back_btn_Click"/>
+                        Click="Back_btn_Click" BorderBrush="{x:Null}"/>
 
                 <TextBlock Grid.Column="1" 
                           Text="MARATHON SKILLS 2025"
@@ -42,7 +42,7 @@
                         Background="#FDC100" Foreground="White"
                         FontFamily="Arial" FontWeight="Bold"
                         Grid.Column="2"
-                        Click="LogOut_btn_Click"/>
+                        Click="LogOut_btn_Click" BorderBrush="{x:Null}"/>
             </Grid>
         </Border>
 

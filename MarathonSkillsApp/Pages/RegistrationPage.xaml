@@ -11,7 +11,7 @@
     <DockPanel LastChildFill="True" Background="White">
         <!-- Верхняя панель -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF241D70" Height="50">
-            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White" BorderBrush="{x:Null}"/>
             <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
        VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>
@@ -38,7 +38,7 @@
             <!-- Заголовок формы -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,10">
                 <TextBlock Text="Регистрация бегуна" FontSize="24" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center"/>
-                <TextBlock Text="Пожалуйста заполните всю информацию, чтобы зарегистрироваться в качестве бегуна." FontSize="14" Foreground="Black" TextWrapping="Wrap" HorizontalAlignment="Center" Width="500" Margin="10"/>
+                <TextBlock Text="Пожалуйста заполните всю информацию, чтобы зарегистрироваться в качестве бегуна." FontSize="14" Foreground="Black" TextWrapping="Wrap" HorizontalAlignment="Center" Width="612" Margin="10"/>
             </StackPanel>
 
             <!-- Левая колонка (Поля ввода) -->
@@ -68,28 +68,34 @@
                 <TextBox x:Name="LastNameTextBox" Grid.Row="4" Grid.Column="1" Width="250" Margin="5"/>
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="Пол:" VerticalAlignment="Center" Margin="5"/>
                 <ComboBox x:Name="GenderComboBox" Grid.Row="5" Grid.Column="1" Width="250" Margin="5">
-                    
+
                 </ComboBox>
             </Grid>
 
             <!-- Правая колонка (Фото и дополнительные поля) -->
-            <StackPanel Grid.Column="1" Margin="20,78,10,0" VerticalAlignment="Top" Grid.RowSpan="4" Height="213">
-                <Border BorderBrush="Gray" BorderThickness="1" Width="60" Height="90" HorizontalAlignment="Center">
+            <StackPanel Grid.Column="1" Margin="20,78,10,0" VerticalAlignment="Top" Grid.RowSpan="3" Height="226">
+                <Border  BorderThickness="1" Width="60" Height="90" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF00903E" Offset="0"/>
+                            <GradientStop Color="#FFFDC100" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
                     <Image x:Name="RunnerPhoto" Stretch="Uniform"/>
                 </Border>
                 <TextBlock Text="Фото файл:" Margin="0,10,0,0" Foreground="Black"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="PhotoPathTextBox" Width="150" Text=" "/>
-                    <Button x:Name="BrowsePhotoButton" Click="BrowsePhotoButton_Click" Content="Просмотр..." Width="75" Margin="5,0,0,0"/>
+                    <TextBox x:Name="PhotoPathTextBox" Width="253" Text=" "/>
+                    <Button x:Name="BrowsePhotoButton" Click="BrowsePhotoButton_Click" Content="Просмотр..." Width="95" Margin="5,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock Text="Дата рождения:" Foreground="Black" VerticalAlignment="Center"/>
                     <DatePicker x:Name="DateOfBirthPicker" Width="250" Margin="10,0,0,0"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="25">
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="28">
                     <TextBlock Text="Страна:" Foreground="Black" VerticalAlignment="Center"/>
-                    <ComboBox x:Name="CountryComboBox" Width="250" Margin="10,0,0,0">
-                        
+                    <ComboBox x:Name="CountryComboBox" Width="300" Margin="10,0,0,0">
+
                     </ComboBox>
                 </StackPanel>
             </StackPanel>

@@ -60,24 +60,37 @@ namespace MarathonSkillsApp.Pages
             DescriptionTextBox.Text = _currentCharity.Description;
             LogoPathTextBox.Text = _currentCharity.LogoPath;
 
+            // Отображаем логотип
             if (!string.IsNullOrEmpty(_currentCharity.LogoPath))
             {
                 try
                 {
-                    string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", _currentCharity.LogoPath);
-                    if (File.Exists(imagePath))
+                    string logoPath = _currentCharity.LogoPath;
+                    if (logoPath.StartsWith("pack://"))
                     {
-                        LogoImage.Fill = new ImageBrush(new BitmapImage(new Uri(imagePath, UriKind.Absolute)));
+                        LogoImage.Fill = new ImageBrush(new BitmapImage(new Uri(logoPath, UriKind.Absolute)));
                     }
                     else
                     {
-                        LogoImage.Fill = Brushes.White;
+                        string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", logoPath);
+                        if (File.Exists(imagePath))
+                        {
+                            LogoImage.Fill = new ImageBrush(new BitmapImage(new Uri(imagePath, UriKind.Absolute)));
+                        }
+                        else
+                        {
+                            LogoImage.Fill = Brushes.White;
+                        }
                     }
                 }
                 catch
                 {
                     LogoImage.Fill = Brushes.White;
                 }
+            }
+            else
+            {
+                LogoImage.Fill = Brushes.White;
             }
         }
 

@@ -48,13 +48,11 @@ namespace MarathonSkillsApp.Pages
         {
             selectedGender = "Female";
 
-            // Активный стиль
-            FemaleBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FDC100"));
+            FemaleBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#241d70"));
             FemaleBorder.BorderThickness = new Thickness(4);
             FemaleBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF8DC"));
             FemaleText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333"));
 
-            // Неактивный стиль для мужского
             MaleBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
             MaleBorder.BorderThickness = new Thickness(2);
             MaleBorder.Background = Brushes.White;
@@ -65,13 +63,11 @@ namespace MarathonSkillsApp.Pages
         {
             selectedGender = "Male";
 
-            // Активный стиль
-            MaleBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FDC100"));
+            MaleBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#241d70"));
             MaleBorder.BorderThickness = new Thickness(4);
             MaleBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF8DC"));
             MaleText.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333"));
 
-            // Неактивный стиль для женского
             FemaleBorder.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
             FemaleBorder.BorderThickness = new Thickness(2);
             FemaleBorder.Background = Brushes.White;

@@ -92,10 +92,10 @@ namespace MarathonSkillsApp.Pages
 
                     string destPath = System.IO.Path.Combine(imagesFolder, logoFileName); // Сохраняем логотип с именем файла, без подпапки
 
-                    // Копируем файл, если он ещё не скопирован
-                    if (!File.Exists(destPath) && File.Exists(LogoPathTextBox.Text))
+                    // Копируем файл, если он ещё не скопирован или путь отличается
+                    if (File.Exists(LogoPathTextBox.Text) && (!File.Exists(destPath) || (new FileInfo(LogoPathTextBox.Text)).FullName != (new FileInfo(destPath)).FullName))
                     {
-                        File.Copy(LogoPathTextBox.Text, destPath);
+                        File.Copy(LogoPathTextBox.Text, destPath, true);
                     }
 
                     // Сохраняем только имя файла в базе данных

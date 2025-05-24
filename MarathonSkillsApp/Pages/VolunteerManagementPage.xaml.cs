@@ -23,40 +23,30 @@ namespace MarathonSkillsApp.Pages
     /// <summary>
     /// Логика взаимодействия для VolunteerManagementPage.xaml
     /// </summary>
-    public partial class VolunteerManagementPage : Page
+    public partial class VolunteerManagementPage : Page, INotifyPropertyChanged
     {
         private readonly DateTime _raceStartTime = new DateTime(2025, 11, 24, 6, 0, 0);
         private DispatcherTimer _timer;
         private mrthnskillsEntities _context = new mrthnskillsEntities();
-        private ObservableCollection<Volunteer> _volunteers;
+        private ObservableCollection<Volunteer> _volunteers = new ObservableCollection<Volunteer>();
         private string _sortProperty = "LastName";
 
-        public ObservableCollection<Volunteer> Volunteers
-        {
-            get { return _volunteers; }
-            set
-            {
-                _volunteers = value;
-                OnPropertyChanged("Volunteers");
-                OnPropertyChanged("VolunteerCountText"); // Добавляем уведомление об изменении
-            }
-        }
+        public ObservableCollection<Volunteer> Volunteers => _volunteers;
 
-        public string VolunteerCountText
-        {
-            get
-            {
-                if (Volunteers == null) return "Загрузка данных...";
-                return $"Всего волонтеров: {Volunteers.Count}";
-            }
-        }
+        public string VolunteerCountText => $"Всего волонтеров: {Volunteers.Count}";
 
         public VolunteerManagementPage()
         {
             InitializeComponent();
+            _volunteers.CollectionChanged += Volunteers_CollectionChanged;
             this.DataContext = this;
             this.Loaded += Page_Loaded;
             this.Unloaded += Page_Unloaded;
+        }
+
+        private void Volunteers_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(VolunteerCountText));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -66,7 +56,6 @@ namespace MarathonSkillsApp.Pages
             _timer.Tick += Timer_Tick;
             _timer.Start();
             UpdateCountdown();
-            ReloadVolunteers();
             LoadVolunteers();
         }
 
@@ -94,9 +83,9 @@ namespace MarathonSkillsApp.Pages
                     .Include(v => v.Gender1)
                     .ToListAsync();
 
-                //MessageBox.Show("Загружено волонтёров: " + list.Count);
-
-                Volunteers = new ObservableCollection<Volunteer>(list);
+                _volunteers.Clear();
+                foreach (var v in list)
+                    _volunteers.Add(v);
 
                 // Привязка источника данных к таблице
                 VolunteersDataGrid.ItemsSource = Volunteers;
@@ -125,8 +114,9 @@ namespace MarathonSkillsApp.Pages
             else // По умолчанию сортировка по фамилии
                 sorted = sorted.OrderBy(v => v.LastName).ToList();
 
-            Volunteers = new ObservableCollection<Volunteer>(sorted);
-            OnPropertyChanged("VolunteerCountText"); // Уведомляем об изменении количества
+            _volunteers.Clear();
+            foreach (var v in sorted)
+                _volunteers.Add(v);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -144,8 +134,10 @@ namespace MarathonSkillsApp.Pages
                         .Include(v => v.Gender1)
                         .ToList();
 
-                    Volunteers = new ObservableCollection<Volunteer>(volunteers);
-                    VolunteersDataGrid.ItemsSource = Volunteers;
+                    _volunteers.Clear();
+                    foreach (var v in volunteers)
+                        _volunteers.Add(v);
+
                     OnPropertyChanged("VolunteerCountText");
                 }
             }
@@ -177,7 +169,9 @@ namespace MarathonSkillsApp.Pages
                     .Include(v => v.Gender1)
                     .ToListAsync();
 
-                Volunteers = new ObservableCollection<Volunteer>(list);
+                _volunteers.Clear();
+                foreach (var v in list)
+                    _volunteers.Add(v);
 
                 SortVolunteers(); // Применяем сортировку после загрузки
 

@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
+                    xmlns:hc="https://handyorg.github.io/handycontrol"
+
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="900"
       Title="CharityManagementPage"
@@ -86,7 +88,7 @@
                         FontSize="14"
                         FontWeight="Bold"
                         Foreground="White"
-                        Background="#FFD700"/>
+                        Background="{x:Null}"/>
 
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Text="MARATHON SKILLS 2025" 
@@ -119,74 +121,39 @@
                         Background="#00903E"/>
 
                 <!-- Charity List -->
-                <ListBox ItemsSource="{Binding Charities}" 
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         Background="Transparent" 
-                         BorderThickness="0"
-                         ItemContainerStyle="{StaticResource CharityItemStyle}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <!-- Logo -->
-                                <Border Grid.Column="0" Grid.RowSpan="2"
-                                        Width="80" Height="80"
-                                        Background="White" CornerRadius="4"
-                                        BorderBrush="#DDD" BorderThickness="1"
-                                        Margin="10,10">
-                                    <Image Source="{Binding LogoPath}" 
-                                           Stretch="Uniform"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"/>
-                                </Border>
-
-                                <!-- Name -->
-                                <TextBlock Grid.Column="1" Grid.Row="0"
-                                           Text="{Binding Name}" 
-                                           FontWeight="Bold" 
-                                           FontSize="16"
-                                           Foreground="#2B2B6F"
-                                           VerticalAlignment="Bottom"
-                                           Margin="10,0,0,5"/>
-
-                                <!-- Description -->
-                                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"
-                                           Text="{Binding Description}" 
-                                           TextWrapping="Wrap"
-                                           FontSize="14"
-                                           Foreground="#555"
-                                           Margin="10,5,10,10"
-                                           MaxHeight="60"
-                                           TextTrimming="CharacterEllipsis"/>
-
-                                <!-- Edit Button -->
-                                <Button Grid.Column="3" Grid.Row="0"
-                                        Content="Изменить" 
-                                        Tag="{Binding Id}"
-                                        Click="EditCharity_Click"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Center"
-                                        Margin="0,0,10,0"
-                                        Width="80"
-                                        Height="30"
-                                        FontSize="14"
-                                        FontWeight="Bold"
-                                        Foreground="Black"
-                                        Background="#FFD700"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <ListView ItemsSource="{Binding Charities}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Margin="0,0,0,0"
+                          Height="400">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Фото" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding LogoPath}" Width="60" Height="60" Stretch="Uniform"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Название" Width="180" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Описание" Width="300">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxHeight="60"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Изменить" Click="EditCharity_Click" Tag="{Binding Id}" DataContext="{Binding}" Width="80" Height="30"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </StackPanel>
         </ScrollViewer>
 

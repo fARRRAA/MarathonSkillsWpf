@@ -10,14 +10,14 @@
 
     <DockPanel LastChildFill="True">
         <!-- Top Panel -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#003366" Height="50">
-            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#241d70" Height="50">
+            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White" BorderBrush="{x:Null}"/>
             <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
                        VerticalAlignment="Center" Margin="20,0,0,0" FontFamily="Arial"/>
         </StackPanel>
 
         <!-- Bottom Panel -->
-        <Grid DockPanel.Dock="Bottom" Background="#003366" Height="30">
+        <Grid DockPanel.Dock="Bottom" Background="#241d70" Height="30">
             <TextBlock x:Name="CountdownTextBlock" FontSize="14"
                        Foreground="#E0E0E0" VerticalAlignment="Center" Margin="10,0,0,0" TextAlignment="Center" FontFamily="Arial"/>
         </Grid>
@@ -44,31 +44,29 @@
 
                     <!-- Первая колонка -->
                     <Button x:Name="InfoPage" Grid.Row="0" Grid.Column="0" Click="InfoPage_Click" 
-                            Content="Marathon Skills 2016" Height="60" Background="#FF00903E" 
-                            BorderThickness="0" Foreground="White"/>
+                            Content="Marathon Skills 2016" Height="50" Background="#fdc100" 
+                            BorderThickness="0" Foreground="White" Width="300"/>
 
                     <Button x:Name="HowLong" Grid.Row="2" Grid.Column="0" Click="HowLong_Click" 
-                            Content="Насколько долгий марафон" Height="60" Background="#FF00903E" 
-                            BorderThickness="0" Foreground="White"/>
+                            Content="Насколько долгий марафон" Height="50" Background="#fdc100" 
+                            BorderThickness="0" Foreground="White" Width="300"/>
 
-                    <Button x:Name="ChariryList" Grid.Row="4" Grid.Column="0" Click="ChariryList_Click" 
-                            Height="60" BorderThickness="0" Background="#FF00903E" Foreground="White" HorizontalAlignment="Left" Margin="0,5,0,5" Width="210">
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
-                                   Text="Список благотворительных организаций" Foreground="White"/>
-                    </Button>
+                    <Button x:Name="ChariryList" Grid.Row="4" Click="ChariryList_Click" 
+                            Height="50" BorderThickness="0" Background="#fdc100" Foreground="White"
+                            Content="Список благот организаций" Width="210"/>
 
                     <!-- Вторая колонка -->
                     <Button Grid.Row="0" Grid.Column="2" 
-                            Content="Предыдущие результаты" Height="60" Background="#FF00903E" 
-                            BorderThickness="0" Foreground="White" Click="Button_Click_1"/>
+                            Content="Предыдущие результаты" Height="50" Background="#fdc100" 
+                            BorderThickness="0" Foreground="White" Click="Button_Click_1" Width="300"/>
 
                     <Button x:Name="BMI_Calc" Grid.Row="2" Grid.Column="2" Click="BMI_Calc_Click" 
-                            Content="BMI калькулятор" Height="60" Background="#FF00903E" 
-                            BorderThickness="0" Foreground="White"/>
+                            Content="BMI калькулятор" Height="50" Background="#fdc100" 
+                            BorderThickness="0" Foreground="White" Width="300"/>
 
                     <Button x:Name="BMR_Calc" Grid.Row="4" Grid.Column="2" Click="BMR_Calc_Click" 
-                            Content="BMR калькулятор" Height="60" Background="#FF00903E" 
-                            BorderThickness="0" Foreground="White"/>
+                            Content="BMR калькулятор" Height="49" Background="#fdc100" 
+                            BorderThickness="0" Foreground="White" Width="300"/>
                 </Grid>
             </StackPanel>
         </Grid>

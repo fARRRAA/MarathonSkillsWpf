@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
+                          xmlns:hc="https://handyorg.github.io/handycontrol"
+
       d:DesignHeight="600" d:DesignWidth="900"
       Title="Регистрация на марафон">
 
@@ -31,10 +33,10 @@
                         Width="80"
                         Height="30"
                         Background="#FDC100"
-                        Foreground="Black"
+                        Foreground="White"
                         FontFamily="Arial"
                         FontSize="14"
-                        Click="Back_btn_Click"/>
+                        Click="Back_btn_Click" BorderBrush="{x:Null}"/>
 
                 <TextBlock Grid.Column="1"
                            Text="MARATHON SKILLS 2025"
@@ -51,10 +53,10 @@
                         Width="80"
                         Height="30"
                         Background="#FDC100"
-                        Foreground="Black"
+                        Foreground="White"
                         FontFamily="Arial"
                         FontSize="14"
-                        Click="LogOut_btn_Click"/>
+                        Click="LogOut_btn_Click" BorderBrush="{x:Null}"/>
             </Grid>
         </Border>
 
@@ -77,7 +79,7 @@
                                Margin="0,0,0,5"/>
 
                     <TextBlock Text="Пожалуйста заполните всю информацию, чтобы зарегистрироваться на Skills Marathon 2025, проводимом в Москве, Russia. С вами свяжутся после регистрации для уточнения оплаты и другой информации."
-                               FontSize="12"
+                               FontSize="14"
                                FontFamily="Arial"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
@@ -92,7 +94,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Left Column -->
-                    <StackPanel Grid.Column="0" Margin="5">
+                    <StackPanel Grid.Column="0" Margin="5,50,5,5">
                         <TextBlock Text="Вид марафона"
                                    FontSize="14"
                                    FontWeight="Bold"
@@ -101,7 +103,7 @@
 
                         <CheckBox x:Name="cbFullMarathon"
                                   Content="42km Полный марафон ($145)"
-                                  FontSize="12"
+                                  FontSize="14"
                                   FontFamily="Arial"
                                   Margin="0,0,0,5"
                                   Checked="EventType_Checked"
@@ -109,7 +111,7 @@
 
                         <CheckBox x:Name="cbHalfMarathon"
                                   Content="21km Полумарафон ($75)"
-                                  FontSize="12"
+                                  FontSize="14"
                                   FontFamily="Arial"
                                   Margin="0,0,0,5"
                                   Checked="EventType_Checked"
@@ -117,7 +119,7 @@
 
                         <CheckBox x:Name="cbSmallRace"
                                   Content="5km Малая дистанция ($20)"
-                                  FontSize="12"
+                                  FontSize="14"
                                   FontFamily="Arial"
                                   Margin="0,0,0,10"
                                   Checked="EventType_Checked"
@@ -130,35 +132,33 @@
                                    Margin="0,5,0,5"/>
 
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                            <TextBlock Text="Фонд:"
-                                       FontSize="12"
-                                       FontFamily="Arial"
-                                       VerticalAlignment="Center"
-                                       Width="80"/>
                             <ComboBox x:Name="cbCharity"
                                       Width="150"
-                                      FontSize="12"
+                                      FontSize="14"
                                       FontFamily="Arial"
-                                      DisplayMemberPath="CharityName"/>
+                                      DisplayMemberPath="CharityName"
+                                      Height="50"     
+                                      Style="{StaticResource ComboBoxExtend}"
+                                     hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Выберите фонд"/>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Сумма взноса:"
-                                       FontSize="12"
-                                       FontFamily="Arial"
-                                       VerticalAlignment="Center"
-                                       Width="80"/>
-                            <TextBox x:Name="tbDonationAmount"
+ 
+                            <hc:TextBox x:Name="tbDonationAmount"
                                      Text="500"
-                                     Width="80"
-                                     FontSize="12"
+                                     Width="102"
+                                     FontSize="14"
                                      FontFamily="Arial"
-                                     TextChanged="DonationAmount_TextChanged"/>
+                                     TextChanged="DonationAmount_TextChanged"
+                                        Height="50"                       
+                                     hc:InfoElement.Placeholder="Взнос" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Взнос"/>
                         </StackPanel>
                     </StackPanel>
 
                     <!-- Right Column -->
-                    <StackPanel Grid.Column="1" Margin="5">
+                    <StackPanel Grid.Column="1" Margin="5,50,5,5" HorizontalAlignment="Left">
                         <TextBlock Text="Варианты комплектов"
                                    FontSize="14"
                                    FontWeight="Bold"
@@ -167,34 +167,34 @@
 
                         <RadioButton x:Name="rbOptionA"
                                      GroupName="KitOptions"
-                                     FontSize="12"
+                                     FontSize="14"
                                      FontFamily="Arial"
                                      Margin="0,0,0,5"
-                                     Checked="RaceKit_Checked">
+                                     Checked="RaceKit_Checked" HorizontalAlignment="Left">
                             <TextBlock Text="Вариант A ($0): Номер бегуна + RFID браслет"
-                                       FontSize="12"
+                                       FontSize="14"
                                        TextWrapping="Wrap"/>
                         </RadioButton>
 
                         <RadioButton x:Name="rbOptionB"
                                      GroupName="KitOptions"
-                                     FontSize="12"
+                                     FontSize="14"
                                      FontFamily="Arial"
                                      Margin="0,0,0,5"
-                                     Checked="RaceKit_Checked">
+                                     Checked="RaceKit_Checked" HorizontalAlignment="Left">
                             <TextBlock Text="Вариант B ($20): Вариант A + бейсболка + бутылка воды"
-                                       FontSize="12"
+                                       FontSize="14"
                                        TextWrapping="Wrap"/>
                         </RadioButton>
 
                         <RadioButton x:Name="rbOptionC"
                                      GroupName="KitOptions"
-                                     FontSize="12"
+                                     FontSize="14"
                                      FontFamily="Arial"
                                      Margin="0,0,0,10"
                                      Checked="RaceKit_Checked">
                             <TextBlock Text="Вариант C ($45): Вариант B + футболка + сувенирный буклет"
-                                       FontSize="12"
+                                       FontSize="14"
                                        TextWrapping="Wrap"/>
                         </RadioButton>
 
@@ -250,7 +250,7 @@
         <Border Grid.Row="2" Background="#241D70">
             <TextBlock x:Name="CountdownTextBlock"
                        Text="18 дней 8 часов и 17 минут до старта марафона!"
-                       FontSize="12"
+                       FontSize="14"
                        FontFamily="Arial"
                        Foreground="White"
                        HorizontalAlignment="Center"

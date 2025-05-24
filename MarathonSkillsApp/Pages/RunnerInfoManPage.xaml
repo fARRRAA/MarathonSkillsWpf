@@ -13,7 +13,7 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#241D70" Height="60">
             <Button x:Name="Back_btn" Click="Back_btn_Click" 
                     Content="Назад" Width="100" Height="30" Margin="10,15,0,15" 
-                    Background="#FDC100" Foreground="White" FontWeight="Bold"/>
+                    Background="#FDC100" Foreground="White" FontWeight="Bold" BorderBrush="{x:Null}"/>
 
             <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" 
                        Foreground="White" VerticalAlignment="Center" Margin="20,0,0,0"/>

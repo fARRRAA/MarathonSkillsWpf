@@ -13,7 +13,7 @@
     <DockPanel LastChildFill="True">
         <!-- Top Panel -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF241D70" Height="50">
-            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+            <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White" BorderBrush="{x:Null}"/>
             <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
            VerticalAlignment="Center" Margin="20,0,0,0"/>
 
@@ -35,7 +35,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20">
                     <TextBlock Text="Отсортировать:" VerticalAlignment="Center" FontSize="14" Foreground="Black" Margin="0,0,10,0"/>
                     <ComboBox Name="SortComboBox" Width="180" Height="25" FontSize="14" Margin="0,0,10,0"/>
-                    <Button x:Name="SortButton" Click="SortButton_Click" Content="Сортировка" Width="90" Height="25" FontSize="14" Background="#FDC100" Foreground="White"/>
+                    <Button x:Name="SortButton" Click="SortButton_Click" Content="Сортировка" Width="100" Height="30" FontSize="14" Background="#FDC100" Foreground="White"/>
                 </StackPanel>
 
                 <!-- Информация о количестве -->

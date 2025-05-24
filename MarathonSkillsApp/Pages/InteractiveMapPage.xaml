@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="Back_btn" Click="Back_btn_Click" Content="Назад" Width="90" Height="36" Margin="10,12,0,12" 
-                    Background="#FDC100" Foreground="White" FontWeight="Bold" FontSize="16" Grid.Column="0"/>
+                    Background="#FDC100" Foreground="White" FontWeight="Bold" FontSize="16" Grid.Column="0" BorderBrush="{x:Null}"/>
             <TextBlock Text="Интерактивная карта Marathon Skills 2025"
                        FontSize="28" FontWeight="Bold" Foreground="White"
                        VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>

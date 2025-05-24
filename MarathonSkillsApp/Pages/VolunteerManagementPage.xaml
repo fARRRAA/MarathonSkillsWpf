@@ -2,7 +2,9 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:hc="https://handyorg.github.io/handycontrol"
+
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="900"
       Title="Volunteer Management">
@@ -88,7 +90,7 @@
 
                 <Button Content="Назад" Width="100" Height="30"
                         Style="{StaticResource YellowButtonStyle}"
-                        Click="BackButton_Click" Grid.Column="0" Foreground="White"/>
+                        Click="BackButton_Click" Grid.Column="0" Foreground="White" BorderBrush="{x:Null}"/>
 
                 <TextBlock Grid.Column="1" 
                           Text="MARATHON SKILLS 2025"
@@ -101,7 +103,7 @@
                         Width="100" Height="30"
                         Style="{StaticResource YellowButtonStyle}"
                         Grid.Column="2"
-                        Click="LogOut_btn_Click" Foreground="White"/>
+                        Click="LogOut_btn_Click" Foreground="White" BorderBrush="{x:Null}"/>
             </Grid>
         </Border>
 
@@ -147,23 +149,23 @@
 
             <!-- Счетчик волонтеров -->
             <TextBlock Grid.Row="1" Text="{Binding VolunteerCountText}" 
-           FontWeight="Bold" HorizontalAlignment="Right" 
-           VerticalAlignment="Center" Margin="0,0,20,0"
-           FontSize="14"/>
+               FontWeight="Bold" HorizontalAlignment="Right" 
+               VerticalAlignment="Center" Margin="0,0,20,0"
+               FontSize="16" Foreground="#241D70"/>
 
             <!-- Таблица волонтеров -->
-            <DataGrid x:Name="VolunteersDataGrid" Grid.Row="2"
-                      AutoGenerateColumns="False" 
+            <ListView x:Name="VolunteersDataGrid" Grid.Row="2"
                       ItemsSource="{Binding Volunteers}"
-                      Style="{StaticResource ModernDataGridStyle}"
-                      SelectionMode="Single">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
-                    <DataGridTextColumn Header="Страна" Binding="{Binding Country.CountryName}" Width="*"/>
-                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                      >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" Width="200" />
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" Width="200" />
+                        <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Country.CountryName}" Width="200" />
+                        <GridViewColumn Header="Пол" DisplayMemberBinding="{Binding Gender}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <!-- Нижняя панель (синяя) -->

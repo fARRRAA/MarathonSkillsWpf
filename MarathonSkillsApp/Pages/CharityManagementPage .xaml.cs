@@ -107,7 +107,6 @@ namespace MarathonSkillsApp.Pages
 
             if (charity != null)
             {
-                // Переход на страницу редактирования с передачей объекта Charity
                 NavigationService.Navigate(new EditCharityPage(charity));
             }
         }

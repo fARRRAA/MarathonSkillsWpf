@@ -10,7 +10,7 @@
     <DockPanel LastChildFill="True">
         <!-- Top Panel -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF241D70" Height="50">
-            <Button x:Name="Btn_back" Click="Btn_back_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White"/>
+            <Button x:Name="Btn_back" Click="Btn_back_Click" Content="Назад" Width="100" Height="30" Margin="10,10,0,10" Background="#FDC100" Foreground="White" BorderBrush="{x:Null}"/>
             <TextBlock Text="MARATHON SKILLS 2025" FontSize="18" FontWeight="Bold" Foreground="White"
                        VerticalAlignment="Center" Margin="20,0,0,0"/>
         </StackPanel>

@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d" 
-      Height="450" Width="800"
+                          xmlns:hc="https://handyorg.github.io/handycontrol"
+
+      Height="600" Width="900"
       Title="Sponsor Runner Page">
 
-    
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -27,7 +29,7 @@
                         Width="100" Height="30" Margin="10,0,0,0"
                         Background="#FDC100" Foreground="White"
                         FontWeight="Bold" Click="Back_btn_Click"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center" BorderBrush="{x:Null}"/>
 
                 <TextBlock Grid.Column="1" 
                           Text="MARATHON SKILLS 2025"
@@ -37,7 +39,7 @@
         </Border>
 
         <!-- Main Content -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,-32" Grid.RowSpan="2">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -52,11 +54,15 @@
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Пожалуйста выберите бегуна, которого вы хотите спонсировать..."
                                TextWrapping="Wrap" HorizontalAlignment="Center"
-                               FontSize="12"/>
+                               FontSize="12" Margin="0,0,0,15"/>
                 </StackPanel>
 
                 <!-- Content Section -->
                 <Grid Grid.Row="2" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="34*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="10"/>
@@ -64,30 +70,33 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Left Column - Sponsor Info -->
-                    <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" Padding="10">
+                    <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" Padding="10" Grid.RowSpan="2" VerticalAlignment="Center">
                         <StackPanel>
                             <TextBlock Text="Информация о Спонсоре" 
                                        FontSize="16" FontWeight="Bold"/>
 
-                            <TextBlock Text="Ваше имя:" FontWeight="Bold" FontSize="12"/>
-                            <TextBox x:Name="SponsorNameTextBox" Height="19"/>
+                            <hc:TextBox x:Name="SponsorNameTextBox" Height="50"                       
+                                     hc:InfoElement.Placeholder="Ваше имя" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Введите имя" />
 
-                            <TextBlock Text="Бегун:" FontWeight="Bold" FontSize="12"/>
-                            <ComboBox x:Name="RunnerComboBox" Height="21"
+                            <ComboBox x:Name="RunnerComboBox" 
                                       DisplayMemberPath="Display" 
                                       SelectedValuePath="RegistrationId"
-                                      SelectionChanged="RunnerComboBox_SelectionChanged"/>
+                                      SelectionChanged="RunnerComboBox_SelectionChanged"
+                                      Style="{StaticResource ComboBoxExtend}"    hc:InfoElement.Title="Выберите бегуна"  hc:TitleElement.TitlePlacement="Top" />
 
-                            <TextBlock Text="Карта:" FontWeight="Bold" FontSize="12"/>
-                            <TextBox x:Name="CardHolderTextBox" Height="22"/>
+                            <hc:TextBox x:Name="CardHolderTextBox" Height="50"                       
+                                     hc:InfoElement.Placeholder="Владелец карты" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Владелец карты"/>
 
-                            <TextBlock Text="Номер карты:" FontWeight="Bold" FontSize="12"/>
-                            <TextBox x:Name="CardNumberTextBox" Height="24"
+                            <hc:TextBox x:Name="CardNumberTextBox" Height="50"                       
+                                     hc:InfoElement.Placeholder="Номер карты" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Номер карты"
                                      MaxLength="16" PreviewTextInput="CardNumber_PreviewTextInput"/>
 
-                            <TextBlock Text="Срок действия:" FontWeight="Bold" FontSize="12"/>
+                            <TextBlock Text="Срок действия:"  FontSize="12" Width="395"/>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                                <ComboBox x:Name="MonthComboBox" Width="60" Height="25">
+                                <ComboBox x:Name="MonthComboBox" Width="75" Height="25">
                                     <ComboBoxItem Content="01"/>
                                     <ComboBoxItem Content="02"/>
                                     <ComboBoxItem Content="03"/>
@@ -101,24 +110,25 @@
                                     <ComboBoxItem Content="11"/>
                                     <ComboBoxItem Content="12"/>
                                 </ComboBox>
-                                <ComboBox x:Name="YearComboBox" Width="60" Height="25" Margin="5,0,0,0"/>
+                                <ComboBox x:Name="YearComboBox" Width="78" Height="25" Margin="5,0,0,0"/>
                             </StackPanel>
 
-                            <TextBlock Text="CVC:" FontWeight="Bold" FontSize="12"/>
-                            <TextBox x:Name="CvcTextBox" Width="60" Height="23"
+                            <hc:TextBox x:Name="CvcTextBox" Width="77" Height="50"                       
+                                     hc:InfoElement.Placeholder="CVC" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="CVC"
                                      MaxLength="3" PreviewTextInput="CvcTextBox_PreviewTextInput" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </Border>
 
                     <!-- Right Column - Charity Info -->
-                    <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Padding="10">
+                    <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Padding="10" Grid.RowSpan="2">
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,5">
                                 <TextBlock x:Name="CharityNameTextBlock" Text="Выберите бегуна" 
                                            FontSize="16" FontWeight="Bold"/>
-                                <Button x:Name="InfoButton" Content="i" Width="20" Height="20" Margin="5,0,0,0"
-                                        Click="InfoButton_Click" Background="#FDC100" Foreground="White"
-                                        ToolTip="Информация о благотворительности"/>
+                                <Button x:Name="InfoButton" Content="?" Width="26" Height="22" Margin="5,0,0,0"
+                                        Click="InfoButton_Click" Background="{x:Null}" Foreground="#FFFDC100"
+                                        ToolTip="Информация о благотворительности" BorderBrush="#FFFDC100" FontSize="8"/>
                             </StackPanel>
 
                             <TextBlock Text="Сумма пожертвования" 
@@ -151,7 +161,7 @@
         </ScrollViewer>
 
         <!-- Footer -->
-        <Border Grid.Row="2" Background="#FF241D70">
+        <Border Grid.Row="2" Background="#FF241D70" Margin="0,114,0,-114">
             <TextBlock x:Name="CountdownTextBlock" 
                        Foreground="White" FontSize="14"
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>

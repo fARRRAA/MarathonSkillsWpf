@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
       mc:Ignorable="d" 
+                    xmlns:hc="https://handyorg.github.io/handycontrol"
+
       d:DesignHeight="600" d:DesignWidth="900"
       Title="EditCharityPage">
 
@@ -23,7 +25,7 @@
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top"
                         Margin="10,10,0,0"
-                        Click="BackButton_Click" Background="#FFFDC100" Height="30" Width="70" Foreground="White" />
+                        Click="BackButton_Click" Background="#FFFDC100" Height="30" Width="70" Foreground="White" BorderBrush="{x:Null}" />
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock Text="MARATHON SKILLS 2025" 
                                FontSize="28" 
@@ -54,12 +56,23 @@
 
                     <!-- Левая часть: Наименование и описание -->
                     <StackPanel Grid.Column="0" VerticalAlignment="Top">
-                        <TextBlock Text="Наименование:" FontWeight="Bold" Foreground="#241D70" FontFamily="Arial"/>
-                        <TextBox Text="{Binding Name}" x:Name="NameTextBox" Margin="0,5,0,20" Height="35" FontFamily="Arial"/>
-                        <TextBlock Text="Описание:" FontWeight="Bold" Foreground="#241D70" FontFamily="Arial"/>
-                        <TextBox Text="{Binding Description}" x:Name="DescriptionTextBox" Margin="0,5,0,20" Height="100" 
-                                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontFamily="Arial"/>
-                        <TextBlock Text="Описание благотворительной организации" FontStyle="Italic" Foreground="#666" FontFamily="Arial"/>
+
+                        <hc:TextBox
+                               
+                               hc:InfoElement.Placeholder="Наименование" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Введите имя"
+                                Height="60"
+                                FontSize="16" hc:TitleElement.TitleWidth="140"
+                                    x:Name="NameTextBox" 
+                               />
+                        <hc:TextBox
+                               Margin="0,20,0,0"
+                               hc:InfoElement.Placeholder="Описание" hc:TitleElement.TitlePlacement="Top"
+                                hc:InfoElement.Title="Введите описание"
+                                FontSize="16" hc:TitleElement.TitleWidth="140"
+                                    x:Name="DescriptionTextBox"
+                             TextWrapping="Wrap" Height="180"
+                               />
                     </StackPanel>
 
                     <!-- Правая часть: Логотип -->
@@ -83,9 +96,9 @@
                     <!-- Кнопки снизу, на всю ширину -->
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
                         <Button Content="Сохранить" Width="150" Margin="0,0,20,0" Click="SaveButton_Click"
-                                Background="#FF689F38" Foreground="White" FontFamily="Arial"/>
+                                Background="#241d70" Foreground="White" FontFamily="Arial" Height="39"/>
                         <Button Content="Отмена" Width="150" Click="CancelButton_Click"
-                                Background="#FF689F38" Foreground="White" FontFamily="Arial"/>
+                                Background="#241d70" Foreground="White" FontFamily="Arial" Height="39"/>
                     </StackPanel>
                 </Grid>
             </Border>

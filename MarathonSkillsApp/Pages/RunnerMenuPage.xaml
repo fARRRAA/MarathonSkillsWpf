@@ -37,7 +37,7 @@
                     Background="#FDC100"
                     FontFamily="Arial"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center" BorderBrush="{x:Null}"/>
 
             <TextBlock Grid.Column="1" 
                       Text="MARATHON SKILLS 2025"
@@ -59,7 +59,7 @@
                     Background="#FDC100"
                     FontFamily="Arial"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Center"/>
+                    VerticalAlignment="Center" BorderBrush="{x:Null}"/>
         </Grid>
 
         <!-- Основное содержимое -->
@@ -82,7 +82,7 @@
                                 FontSize="16"
                                 Height="50"
                                 Margin="0,10"
-                                Padding="10"/>
+                                Padding="10" Width="300"/>
 
                         <Button x:Name="EditProfile"
                                 Content="Редактирование профиля"
@@ -93,7 +93,7 @@
                                 FontSize="16"
                                 Height="50"
                                 Margin="0,10"
-                                Padding="10"/>
+                                Padding="10" Width="300"/>
 
                         <Button x:Name="Contacts_btn"
                                 Content="Контакты"
@@ -104,7 +104,7 @@
                                 FontSize="16"
                                 Height="50"
                                 Margin="0,10"
-                                Padding="10"/>
+                                Padding="10" Width="300"/>
                     </StackPanel>
 
                     <StackPanel Width="300" Margin="20">
@@ -117,7 +117,7 @@
                                 FontSize="16"
                                 Height="50"
                                 Margin="0,10"
-                                Padding="10"/>
+                                Padding="10" Width="300"/>
 
                         <Button Content="Мой спонсор"
                                 Background="#00903E"
@@ -126,7 +126,7 @@
                                 FontSize="16"
                                 Height="50"
                                 Margin="0,10"
-                                Padding="10" Click="Button_Click"/>
+                                Padding="10" Click="Button_Click" Width="300"/>
                     </StackPanel>
                 </WrapPanel>
             </StackPanel>

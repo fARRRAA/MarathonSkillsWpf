@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarathonSkillsApp.Window"
         mc:Ignorable="d"
-        Title="Информация о спонсоре" Height="260" Width="400"
+        Title="Информация о спонсоре" Height="360" Width="500"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Background="#FFFFFF">
 
@@ -13,8 +13,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
            
 
-            <StackPanel Margin="0" >
-                <!-- Верхняя панель -->
+            <StackPanel Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <DockPanel LastChildFill="True">
                     <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FFFFFF" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <TextBlock x:Name="CharityNameTextBlock" Text="Наименование спонсора" FontSize="20" FontWeight="Bold" Foreground="#707070"
@@ -22,12 +21,10 @@
 
                     </StackPanel>
                 </DockPanel>
-                <!-- Логотип -->
                 <Ellipse x:Name="CharityLogoEllipse" Width="80" Height="80" Fill="#FFD700" >
 
                 </Ellipse>
 
-                <!-- Описание -->
                 <TextBlock x:Name="CharityDescriptionTextBlock" TextWrapping="Wrap"
                            Text="Здесь указывается описание благотворительной организации. Должна быть обеспечена возможность просмотра большого количества информации в данном окне."
                            FontSize="14" Foreground="#707070" TextAlignment="Center"
