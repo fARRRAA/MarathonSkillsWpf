@@ -31,14 +31,14 @@ namespace MarathonSkillsApp.DB_model
         public decimal SponsorshipTarget { get; set; }
         public Nullable<int> KitTypeId { get; set; }
     
-        public virtual Charity Charity { get; set; }
         public virtual KitTypes KitTypes { get; set; }
         public virtual RaceKitOption RaceKitOption { get; set; }
         public virtual RegistrationStatus RegistrationStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RegistrationEvent> RegistrationEvent { get; set; }
-        public virtual Runner Runner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sponsorship> Sponsorship { get; set; }
+        public virtual Runner Runner { get; set; }
+        public virtual Charity Charity { get; set; }
     }
 }

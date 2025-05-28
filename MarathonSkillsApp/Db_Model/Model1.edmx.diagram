@@ -4,51 +4,51 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0b4fc30510a342fc8da69f57f176b535" Name="Diagram1">
-        <EntityTypeShape EntityType="mrthnskillsModel.Charity" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Country" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Event" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.EventType" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Gender" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Inventory" Width="1.5" PointX="3" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.KitContents" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.KitTypes" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Marathon" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Position" Width="1.5" PointX="7.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.RaceKitOption" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Registration" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.RegistrationEvent" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.RegistrationStatus" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Role" Width="1.5" PointX="1.5" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Runner" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Sponsorship" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Staff" Width="1.5" PointX="10" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Timesheet" Width="1.5" PointX="12.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.User" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mrthnskillsModel.Volunteer" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Registrat__Chari__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Marathon__Countr__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Runner__CountryC__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Volunteer__Count__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Event__EventType__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Event__MarathonI__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Registrat__Event__7B5B524B" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Runner__Gender__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Volunteer__Gende__5FB337D6" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__KitConten__Inven__2CF2ADDF" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__KitConten__KitTy__2BFE89A6" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK_KitTypes_RaceKitOption" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK_Registration_KitTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK_Staff_Position" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Registrat__RaceK__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Registrat__Regis__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Registrat__Regis__7C4F7684" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Registrat__Runne__797309D9" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Sponsorsh__Regis__00200768" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__User__RoleId__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK__Runner__Email__7E37BEF6" ManuallyRouted="false" />
-        <AssociationConnector Association="mrthnskillsModel.FK_Timesheet_Staff" ManuallyRouted="false" />
+      <Diagram DiagramId="010f7de49b9046c888be54886b8f23e6" Name="Diagram1">
+        <EntityTypeShape EntityType="marathon_dbModel.Country" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Event" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.EventType" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Gender" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Inventory" Width="1.5" PointX="3" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.KitContents" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.KitTypes" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Marathon" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Position" Width="1.5" PointX="7.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.RaceKitOption" Width="1.5" PointX="0.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Registration" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.RegistrationEvent" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.RegistrationStatus" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Role" Width="1.5" PointX="1.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Sponsorship" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Staff" Width="1.5" PointX="10" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Timesheet" Width="1.5" PointX="12.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="marathon_dbModel.Volunteer" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="marathon_dbModel.FK__Marathon__Countr__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Volunteer__Count__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Event__EventType__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Event__MarathonI__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Registrat__Event__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Volunteer__Gende__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__KitConten__Inven__2CF2ADDF" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__KitConten__KitTy__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK_KitTypes_RaceKitOption" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK_Registration_KitTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Staff__PositionI__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Registrat__RaceK__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Registrat__Regis__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Registrat__Regis__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Sponsorsh__Regis__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="marathon_dbModel.FK__Timesheet__Staff__6477ECF3" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="marathon_dbModel.Runner" Width="1.5" PointX="3" PointY="1.875" />
+        <AssociationConnector Association="marathon_dbModel.FK__Runner__CountryC__5FB337D6" />
+        <AssociationConnector Association="marathon_dbModel.FK__Runner__Gender__619B8048" />
+        <AssociationConnector Association="marathon_dbModel.FK__Registrat__Runne__5CD6CB2B" />
+        <EntityTypeShape EntityType="marathon_dbModel.User" Width="1.5" PointX="3.75" PointY="32.875" />
+        <AssociationConnector Association="marathon_dbModel.FK__User__RoleId__656C112C" />
+        <AssociationConnector Association="marathon_dbModel.FK__Runner__Email__60A75C0F" />
+        <EntityTypeShape EntityType="marathon_dbModel.Charity" Width="1.5" PointX="5.375" PointY="11.875" />
+        <AssociationConnector Association="marathon_dbModel.FK__Registrat__Chari__59FA5E80" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

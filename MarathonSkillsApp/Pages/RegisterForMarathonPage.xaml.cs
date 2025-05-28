@@ -97,7 +97,7 @@ namespace MarathonSkillsApp.Pages
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
-            if (cbCharity.SelectedItem is Charity selectedCharity)
+            if (cbCharity.SelectedItem is DB_model.Charity selectedCharity)
             {
                 SponsorInfoWindow infoWindow = new SponsorInfoWindow(selectedCharity);
                 infoWindow.Show();

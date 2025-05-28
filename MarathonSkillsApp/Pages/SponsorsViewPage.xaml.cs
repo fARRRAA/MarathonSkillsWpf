@@ -1,6 +1,7 @@
 ﻿using MarathonSkillsApp.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,10 +54,11 @@ namespace MarathonSkillsApp.Pages
                 {
                     CharityId = charity.CharityId,
                     CharityName = charity.CharityName,
-                    CharityLogo = charity.CharityLogo,
+                    CharityLogo = charity.CharityLogo, // Получаем byte[]
                     TotalAmount = ConnectionClass.connect.Registration
                         .Where(r => r.CharityId == charity.CharityId)
-                        .Join(ConnectionClass.connect.Sponsorship,
+                        .Join(
+                            ConnectionClass.connect.Sponsorship,
                             reg => reg.RegistrationId,
                             s => s.RegistrationId,
                             (reg, s) => s.Amount)
@@ -113,12 +115,31 @@ namespace MarathonSkillsApp.Pages
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            try
+            if (group.CharityLogo != null && group.CharityLogo.Length > 0)
             {
-                logo.Source = new BitmapImage(new Uri($"/Images/{group.CharityLogo}", UriKind.Relative));
+                try
+                {
+                    using (var memoryStream = new MemoryStream(group.CharityLogo))
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.StreamSource = memoryStream;
+                        bitmapImage.EndInit();
+                        bitmapImage.Freeze(); // Важно для потокобезопасности
+
+                        logo.Source = bitmapImage;
+                    }
+                }
+                catch
+                {
+                    // При ошибке — дефолтное изображение
+                    logo.Source = new BitmapImage(new Uri("/Images/default.png", UriKind.Relative));
+                }
             }
-            catch
+            else
             {
+                // Если нет данных — дефолтное изображение
                 logo.Source = new BitmapImage(new Uri("/Images/default.png", UriKind.Relative));
             }
 
@@ -156,10 +177,9 @@ namespace MarathonSkillsApp.Pages
         {
             public int CharityId { get; set; }
             public string CharityName { get; set; }
-            public string CharityLogo { get; set; }
+            public byte[] CharityLogo { get; set; } // Теперь это byte[]
             public decimal TotalAmount { get; set; }
         }
-
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
             RefreshSponsorList();

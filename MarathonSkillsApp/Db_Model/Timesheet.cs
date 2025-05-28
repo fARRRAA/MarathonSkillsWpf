@@ -17,7 +17,7 @@ namespace MarathonSkillsApp.DB_model
         public int TimesheetId { get; set; }
         public int StaffId { get; set; }
         public Nullable<System.DateTime> StartDateTime { get; set; }
-        public Nullable<System.DateTime> EndDateTime { get; set; }
+        public Nullable<System.DateTime> StartEndTime { get; set; }
         public Nullable<decimal> PayAmount { get; set; }
     
         public virtual Staff Staff { get; set; }

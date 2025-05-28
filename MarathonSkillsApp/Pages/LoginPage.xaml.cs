@@ -105,8 +105,8 @@ namespace MarathonSkillsApp.Pages
 
         private void Coordinator_Click(object sender, RoutedEventArgs e)
         {
-            EmailTextBox.Text = "super@bk.ru";
-            PasswordBoxControl.Password = "Dalimali06!";
+            EmailTextBox.Text = "aisha.boone@gmail.com";
+            PasswordBoxControl.Password = "ic13qhdv";
         }
 
         private void Runner_Click(object sender, RoutedEventArgs e)

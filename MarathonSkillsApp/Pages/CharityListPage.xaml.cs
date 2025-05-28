@@ -53,10 +53,10 @@ namespace MarathonSkillsApp.Pages
 
                 foreach (var charity in charities)
                 {
-                    // Обёртка для организации
+                    // Создаем контейнер для каждой организации
                     var dockPanel = new DockPanel { Margin = new Thickness(30, 20, 30, 10) };
 
-                    // Эллипс с изображением (если есть логотип)
+                    // Эллипс для изображения
                     var ellipse = new Ellipse
                     {
                         Width = 50,
@@ -65,40 +65,41 @@ namespace MarathonSkillsApp.Pages
                         StrokeThickness = 1
                     };
 
-                    if (!string.IsNullOrEmpty(charity.CharityLogo))
+                    // Пытаемся загрузить изображение из byte[]
+                    if (charity.CharityLogo != null && charity.CharityLogo.Length > 0)
                     {
                         try
                         {
-                            var logoPath = System.IO.Path.Combine("Images", charity.CharityLogo); // путь к логотипу
-                            if (File.Exists(logoPath))
+                            using (var memoryStream = new MemoryStream(charity.CharityLogo))
                             {
-                                var imageBrush = new ImageBrush
+                                var bitmapImage = new BitmapImage();
+                                bitmapImage.BeginInit();
+                                bitmapImage.StreamSource = memoryStream;
+                                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmapImage.EndInit();
+                                bitmapImage.Freeze(); // Для потокобезопасности
+
+                                ellipse.Fill = new ImageBrush(bitmapImage)
                                 {
-                                    ImageSource = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute)),
                                     Stretch = Stretch.UniformToFill
                                 };
-                                ellipse.Fill = imageBrush;
-                            }
-                            else
-                            {
-                                ellipse.Fill = Brushes.Black;
                             }
                         }
                         catch
                         {
-                            ellipse.Fill = Brushes.Black;
+                            ellipse.Fill = Brushes.LightGray; // Ошибка при загрузке
                         }
                     }
                     else
                     {
-                        ellipse.Fill = Brushes.Black;
+                        ellipse.Fill = Brushes.Gray; // Нет изображения
                     }
 
                     dockPanel.Children.Add(ellipse);
 
                     // Текстовое описание
-                    var stack = new StackPanel { Margin = new Thickness(30, 0, 30, 0) };
-                    DockPanel.SetDock(stack, Dock.Right);
+                    var stackPanel = new StackPanel { Margin = new Thickness(30, 0, 30, 0) };
+                    DockPanel.SetDock(stackPanel, Dock.Right);
 
                     var nameText = new TextBlock
                     {
@@ -114,14 +115,13 @@ namespace MarathonSkillsApp.Pages
                         FontSize = 14,
                         TextWrapping = TextWrapping.Wrap,
                         Foreground = Brushes.Black,
-                        Width=600,
-                        HorizontalAlignment=HorizontalAlignment.Left
-                     
+                        Width = 600,
+                        HorizontalAlignment = HorizontalAlignment.Left
                     };
 
-                    stack.Children.Add(nameText);
-                    stack.Children.Add(descText);
-                    dockPanel.Children.Add(stack);
+                    stackPanel.Children.Add(nameText);
+                    stackPanel.Children.Add(descText);
+                    dockPanel.Children.Add(stackPanel);
 
                     CharityListPanel.Children.Add(dockPanel);
                 }

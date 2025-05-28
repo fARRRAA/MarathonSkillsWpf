@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MarathonSkillsApp.Pages"
       mc:Ignorable="d" 
+                                xmlns:hc="https://handyorg.github.io/handycontrol"
+
       d:DesignHeight="600" d:DesignWidth="900"
       Title="InventoryManagementPage">
 
@@ -83,26 +85,24 @@
                        Margin="0,0,0,20"
                        TextAlignment="Center"
                        HorizontalAlignment="Center"/>
-            <DataGrid x:Name="dgInventory" 
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      HeadersVisibility="All"
-                      GridLinesVisibility="All"
-                      RowHeaderWidth="0"
+            <ListView x:Name="dgInventory" 
                       Background="White"
                       BorderBrush="Gray"
                       BorderThickness="1"
                       Margin="0,0,0,20"
                       MinHeight="200">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Комплект" Binding="{Binding ItemName}" Width="150"/>
-                    <DataGridTextColumn Header="Тип A" Binding="{Binding TypeA}" Width="*"/>
-                    <DataGridTextColumn Header="Тип B" Binding="{Binding TypeB}" Width="*"/>
-                    <DataGridTextColumn Header="Тип C" Binding="{Binding TypeC}" Width="*"/>
-                    <DataGridTextColumn Header="Необходимо" Binding="{Binding Required}" Width="*"/>
-                    <DataGridTextColumn Header="Остаток" Binding="{Binding Stock}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Комплект" DisplayMemberBinding="{Binding ItemName}" Width="150"/>
+                        <GridViewColumn Header="Тип A" DisplayMemberBinding="{Binding TypeA}" Width="150"/>
+                        <GridViewColumn Header="Тип B" DisplayMemberBinding="{Binding TypeB}" Width="150"/>
+                        <GridViewColumn Header="Тип C" DisplayMemberBinding="{Binding TypeC}" Width="150"/>
+                        <GridViewColumn Header="Необходимо" DisplayMemberBinding="{Binding Required}" Width="150"/>
+                        <GridViewColumn Header="Остаток" DisplayMemberBinding="{Binding Stock}" Width="150"/>
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
 
             <Grid Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>

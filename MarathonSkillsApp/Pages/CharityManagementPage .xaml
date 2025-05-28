@@ -119,20 +119,21 @@
                         FontWeight="Bold"
                         Foreground="White"
                         Background="#00903E"/>
-
-                <!-- Charity List -->
                 <ListView ItemsSource="{Binding Charities}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           Background="Transparent"
                           BorderThickness="0"
-                          Margin="0,0,0,0"
                           Height="400">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Фото" Width="100">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding LogoPath}" Width="60" Height="60" Stretch="Uniform"/>
+                                        <!-- Изменено: теперь привязываемся к LogoImage -->
+                                        <Image Source="{Binding LogoImage}" 
+                   Width="60" 
+                   Height="60" 
+                   Stretch="Uniform"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -154,6 +155,8 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+                <!-- Charity List -->
             </StackPanel>
         </ScrollViewer>
 

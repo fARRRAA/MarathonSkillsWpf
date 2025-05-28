@@ -1,6 +1,7 @@
 ﻿using MarathonSkillsApp.DB_model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -111,20 +112,37 @@ namespace MarathonSkillsApp.Pages
                 ? "Описание отсутствует"
                 : charity.CharityDescription;
 
-            string logoFileName = string.IsNullOrEmpty(charity.CharityLogo)
-                ? "default_logo.png"
-                : charity.CharityLogo;
+            // Получаем логотип как byte[]
+            byte[] logoBytes = charity.CharityLogo;
 
-            string imagePath = $"pack://application:,,,/Images/{logoFileName}";
-
-            try
+            if (logoBytes != null && logoBytes.Length > 0)
             {
-                LogoImage.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
+                try
+                {
+                    using (var memoryStream = new MemoryStream(logoBytes))
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.StreamSource = memoryStream;
+                        bitmapImage.EndInit();
+                        bitmapImage.Freeze(); // Для потокобезопасности
+
+                        LogoImage.Source = bitmapImage;
+                    }
+                }
+                catch
+                {
+                    // При ошибке — дефолтное изображение
+                    LogoImage.Source = new BitmapImage(
+                        new Uri("pack://application:,,,/Images/male-icon.png", UriKind.Absolute));
+                }
             }
-            catch
+            else
             {
+                // Если нет данных о логотипе — дефолтное изображение
                 LogoImage.Source = new BitmapImage(
-                    new Uri("pack://application:,,,/Images/default_logo.png", UriKind.Absolute));
+                    new Uri("pack://application:,,,/Images/male-icon.png", UriKind.Absolute));
             }
         }
 

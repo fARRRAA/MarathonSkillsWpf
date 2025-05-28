@@ -1,99 +1,96 @@
 ﻿using MarathonSkillsApp.Classes;
 using MarathonSkillsApp.DB_model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MarathonSkillsApp.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для EditCharityPage.xaml
-    /// </summary>
     public partial class EditCharityPage : Page
     {
-        private Charity _currentCharity;
+        private DB_model.Charity _currentCharity;
         private MarathonCountdown countdown;
         private DateTime marathonDate = new DateTime(2025, 10, 20);
 
         public EditCharityPage(Charity charity)
         {
             InitializeComponent();
-            countdown = new MarathonCountdown(UpdateCountdownText, marathonDate);
-            SetCharityData(charity);
+            DataContext = this;
 
+            // Преобразуем в DB_model.Charity
+            _currentCharity = ConvertToDbModel(charity);
+
+            countdown = new MarathonCountdown(UpdateCountdownText, marathonDate);
+            SetCharityData(_currentCharity);
         }
         private void UpdateCountdownText(string text)
         {
-            // Обновляем текст в TextBlock
             CountdownText.Text = text;
         }
 
-        // При закрытии окна или перехода со страницы остановите таймер
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             countdown.Stop();
         }
-        public void SetCharityData(Charity charity)
+        private DB_model.Charity ConvertToDbModel(Charity viewModel)
         {
-            _currentCharity = charity;
-            if (_currentCharity == null || _currentCharity.Id == 0)
+            return new DB_model.Charity
+            {
+                CharityId = viewModel.Id,
+                CharityName = viewModel.Name,
+                CharityDescription = viewModel.Description,
+                CharityLogo = viewModel.LogoBytes // byte[]
+            };
+        }
+        public void SetCharityData(DB_model.Charity charity)
+        {
+            if (charity == null || charity.CharityId == 0)
             {
                 MessageBox.Show("Ошибка: организация не найдена.");
                 return;
             }
 
-            // Заполняем поля на форме данными организации
-            NameTextBox.Text = _currentCharity.Name;
-            DescriptionTextBox.Text = _currentCharity.Description;
-            LogoPathTextBox.Text = _currentCharity.LogoPath;
+            NameTextBox.Text = charity.CharityName;
+            DescriptionTextBox.Text = charity.CharityDescription;
 
-            // Отображаем логотип
-            if (!string.IsNullOrEmpty(_currentCharity.LogoPath))
+            UpdateLogoImage();
+        }
+
+        private void UpdateLogoImage()
+        {
+            if (_currentCharity?.CharityLogo != null && _currentCharity.CharityLogo.Length > 0)
             {
                 try
                 {
-                    string logoPath = _currentCharity.LogoPath;
-                    if (logoPath.StartsWith("pack://"))
+                    using (var memoryStream = new MemoryStream(_currentCharity.CharityLogo))
                     {
-                        LogoImage.Fill = new ImageBrush(new BitmapImage(new Uri(logoPath, UriKind.Absolute)));
-                    }
-                    else
-                    {
-                        string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", logoPath);
-                        if (File.Exists(imagePath))
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.StreamSource = memoryStream;
+                        bitmapImage.EndInit();
+                        bitmapImage.Freeze();
+
+                        LogoImage.Fill = new ImageBrush(bitmapImage)
                         {
-                            LogoImage.Fill = new ImageBrush(new BitmapImage(new Uri(imagePath, UriKind.Absolute)));
-                        }
-                        else
-                        {
-                            LogoImage.Fill = Brushes.White;
-                        }
+                            Stretch = Stretch.UniformToFill
+                        };
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    LogoImage.Fill = Brushes.White;
+                    MessageBox.Show($"Ошибка при отображении изображения: {ex.Message}");
+                    LogoImage.Fill = Brushes.LightGray;
                 }
             }
             else
             {
-                LogoImage.Fill = Brushes.White;
+                LogoImage.Fill = Brushes.Gray; // Нет фото
             }
         }
-
 
         private void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -104,63 +101,59 @@ namespace MarathonSkillsApp.Pages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                // Устанавливаем путь к выбранному файлу
                 string filePath = openFileDialog.FileName;
 
-                // Копируем файл в папку с изображениями
-                string fileName = System.IO.Path.GetFileName(filePath);
-                string imagePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", fileName);
-                System.IO.File.Copy(filePath, imagePath, true);
-
-                // Обновляем путь к файлу в текстовом поле
-                LogoPathTextBox.Text = fileName;
-
-                // Отображаем изображение логотипа
-                LogoImage.Fill = new ImageBrush(new BitmapImage(new Uri(imagePath, UriKind.Absolute)));
-            }
-        }
-
-        private void SaveCharityData(Charity charity)
-        {
-            using (var dbContext = new mrthnskillsEntities())
-            {
-                var charityInDb = dbContext.Charity.FirstOrDefault(c => c.CharityId == charity.Id);
-                if (charityInDb != null)
+                try
                 {
-                    charityInDb.CharityName = charity.Name;
-                    charityInDb.CharityDescription = charity.Description;
+                    // Читаем файл как byte[]
+                    byte[] logoBytes = File.ReadAllBytes(filePath);
 
-                    // Сохраняем только имя файла, а не полный путь
-                    charityInDb.CharityLogo = System.IO.Path.GetFileName(charity.LogoPath);
+                    // Сохраняем в объект
+                    _currentCharity.CharityLogo = logoBytes;
 
-                    dbContext.SaveChanges();
+                    // Обновляем отображение
+                    UpdateLogoImage();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при чтении файла: {ex.Message}");
                 }
             }
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void SaveCharityData(DB_model.Charity charity)
         {
-            NavigationService.Navigate(new CharityManagementPage());
+            using (var dbContext = new mrthnskillsEntities())
+            {
+                var charityInDb = dbContext.Charity.Find(charity.CharityId);
+                if (charityInDb == null) return;
+
+                charityInDb.CharityName = charity.CharityName;
+                charityInDb.CharityDescription = charity.CharityDescription;
+
+                // Сохраняем напрямую byte[] в поле CharityLogo (тип varbinary(max))
+                charityInDb.CharityLogo = charity.CharityLogo;
+
+                dbContext.SaveChanges();
+            }
         }
-
-
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Обновляем объект с изменениями
-            _currentCharity.Name = NameTextBox.Text;
-            _currentCharity.Description = DescriptionTextBox.Text;
-            _currentCharity.LogoPath = LogoPathTextBox.Text;
+            _currentCharity.CharityName = NameTextBox.Text;
+            _currentCharity.CharityDescription = DescriptionTextBox.Text;
 
-            // Сохраняем данные
             SaveCharityData(_currentCharity);
 
-            // Переход к странице с организациями (она сама обновит данные в OnNavigatedTo)
             NavigationService.Navigate(new CharityManagementPage());
         }
 
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CharityManagementPage());
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CharityManagementPage());
         }

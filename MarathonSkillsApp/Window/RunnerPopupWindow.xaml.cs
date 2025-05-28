@@ -1,6 +1,7 @@
 ﻿using MarathonSkillsApp.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,17 +54,25 @@ namespace MarathonSkillsApp.Window
                 RunnerAgeText.Text = $"Возраст: {age} лет";
             }
 
-            // Фото
-            if (!string.IsNullOrEmpty(runner.Photo))
+            if (runner.Photo.Length > 0)
             {
                 try
                 {
-                    BitmapImage bitmap = new BitmapImage(new Uri(runner.Photo, UriKind.RelativeOrAbsolute));
-                    RunnerPhoto.Source = bitmap;
+                    using (var memoryStream = new MemoryStream(runner.Photo))
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = memoryStream;
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.EndInit();
+
+                        RunnerPhoto.Source = bitmapImage;
+
+                    }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Ошибка загрузки изображения
+                    MessageBox.Show("Ошибка загрузки фото: " + ex.Message);
                 }
             }
 

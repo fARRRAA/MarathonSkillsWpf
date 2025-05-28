@@ -25,7 +25,7 @@ namespace MarathonSkillsApp.DB_model
         public string Gender { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string CountryCode { get; set; }
-        public string Photo { get; set; }
+        public byte[] Photo { get; set; }
     
         public virtual Country Country { get; set; }
         public virtual Gender Gender1 { get; set; }

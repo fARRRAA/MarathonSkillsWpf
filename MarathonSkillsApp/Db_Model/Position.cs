@@ -20,11 +20,11 @@ namespace MarathonSkillsApp.DB_model
             this.Staff = new HashSet<Staff>();
         }
     
-        public short PositionId { get; set; }
+        public int PositionId { get; set; }
         public string PositionName { get; set; }
         public string PositionDescription { get; set; }
         public string PayPeriod { get; set; }
-        public decimal Payrate { get; set; }
+        public Nullable<decimal> Payrate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Staff> Staff { get; set; }

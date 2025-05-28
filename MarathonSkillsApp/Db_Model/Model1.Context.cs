@@ -25,7 +25,6 @@ namespace MarathonSkillsApp.DB_model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Charity> Charity { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<EventType> EventType { get; set; }
@@ -40,12 +39,13 @@ namespace MarathonSkillsApp.DB_model
         public virtual DbSet<RegistrationEvent> RegistrationEvent { get; set; }
         public virtual DbSet<RegistrationStatus> RegistrationStatus { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Runner> Runner { get; set; }
         public virtual DbSet<Sponsorship> Sponsorship { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Timesheet> Timesheet { get; set; }
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Volunteer> Volunteer { get; set; }
+        public virtual DbSet<Runner> Runner { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Charity> Charity { get; set; }
     }
 }

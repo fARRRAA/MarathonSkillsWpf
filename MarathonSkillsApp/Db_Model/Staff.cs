@@ -26,7 +26,7 @@ namespace MarathonSkillsApp.DB_model
         public string Email { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
-        public short PositionId { get; set; }
+        public int PositionId { get; set; }
         public string Comments { get; set; }
     
         public virtual Position Position { get; set; }

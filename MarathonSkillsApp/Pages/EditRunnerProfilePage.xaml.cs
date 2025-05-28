@@ -107,23 +107,31 @@ namespace MarathonSkillsApp.Pages
                     CountryComboBox.SelectedValue = runner.CountryCode;
                     BirthDatePicker.SelectedDate = runner.DateOfBirth;
 
-                    if (!string.IsNullOrEmpty(runner.Photo))
+                    if (runner.Photo!=null)
                     {
+                        if(runner.Photo.Length > 0)
+                        {
                         try
                         {
-                            // 👇 Достраиваем путь до фото
-                            string photoPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "runnerPhotos", runner.Photo);
-
-                            if (File.Exists(photoPath))
+                            using (var memoryStream = new MemoryStream(runner.Photo))
                             {
-                                RunnerImage.Source = new BitmapImage(new Uri(photoPath, UriKind.Absolute));
-                                PhotoPathTextBox.Text = runner.Photo;
+                                var bitmapImage = new BitmapImage();
+                                bitmapImage.BeginInit();
+                                bitmapImage.StreamSource = memoryStream;
+                                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                                bitmapImage.EndInit();
+
+                                RunnerImage.Source = bitmapImage;
+
+                                PhotoPathTextBox.Text = "profilePhoto.png";
                             }
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Ошибка загрузки фото: " + ex.Message);
                         }
+                        }
+
                     }
 
 
@@ -201,30 +209,28 @@ namespace MarathonSkillsApp.Pages
                     runner.CountryCode = CountryComboBox.SelectedValue.ToString();
                     runner.DateOfBirth = birthDate;
 
-                    // Обработка фото
                     string selectedPhotoPath = PhotoPathTextBox.Text;
 
                     if (!string.IsNullOrEmpty(selectedPhotoPath) && File.Exists(selectedPhotoPath))
                     {
-                        string fileName = System.IO.Path.GetFileName(selectedPhotoPath);
-                        string destFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "runnerPhotos");
-                        string destPath = System.IO.Path.Combine(destFolder, fileName);
-
                         try
                         {
-                            if (!Directory.Exists(destFolder))
-                                Directory.CreateDirectory(destFolder);
+                            byte[] photoBytes = File.ReadAllBytes(selectedPhotoPath);
 
-                            File.Copy(selectedPhotoPath, destPath, true);
-                            runner.Photo = fileName; // сохраняем только имя файла
+                            runner.Photo = photoBytes;
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ошибка при сохранении фото: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Ошибка при чтении или сохранении фото: " + ex.Message,
+                                            "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
                     }
-
+                    else
+                    {
+                        // Если фото не выбрано — можно оставить null или предыдущее значение
+                        runner.Photo = null;
+                    }
                     try
                     {
                         context.SaveChanges();

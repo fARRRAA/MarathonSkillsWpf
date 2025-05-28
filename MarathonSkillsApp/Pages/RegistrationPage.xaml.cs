@@ -27,7 +27,7 @@ namespace MarathonSkillsApp.Pages
         private MarathonCountdown countdown;
         private DateTime marathonDate = new DateTime(2025, 10, 20);
 
-        private string selectedPhotoPath;
+        private byte[] photoByte;
         public RegistrationPage()
         {
             InitializeComponent();
@@ -82,30 +82,28 @@ namespace MarathonSkillsApp.Pages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                selectedPhotoPath = openFileDialog.FileName;
-                string fileName = System.IO.Path.GetFileName(selectedPhotoPath);
-
-                // 2. Папка назначения внутри проекта
-                string folderPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "runnerPhotos");
-
-                if (!Directory.Exists(folderPath))
-                    Directory.CreateDirectory(folderPath);
-
-                // 3. Полный путь назначения
-                string destinationPath = System.IO.Path.Combine(folderPath, fileName);
+                var selectedPhotoPath = openFileDialog.FileName;
 
                 try
                 {
-                    // 4. Копирование файла (если ещё не скопирован или заменить)
-                    File.Copy(selectedPhotoPath, destinationPath, true);
+                    // 2. Чтение фото как массив байтов
+                    photoByte = File.ReadAllBytes(selectedPhotoPath);
 
-                    // 5. Отображение фото в Image
-                    RunnerPhoto.Source = new BitmapImage(new Uri(destinationPath));
+                    // 3. Отображение изображения в Image через MemoryStream
+                    using (var memoryStream = new MemoryStream(photoByte))
+                    {
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = memoryStream;
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.EndInit();
 
-                    // 6. Отображение имени файла в TextBox
-                    PhotoPathTextBox.Text = fileName;
+                        RunnerPhoto.Source = bitmapImage;
+                    }
 
-                    // 7. Сохраняй `fileName` в БД, а не полный путь
+                    // 4. Отображение имени файла в TextBox
+                    PhotoPathTextBox.Text = System.IO.Path.GetFileName(selectedPhotoPath);
+
                 }
                 catch (Exception ex)
                 {
@@ -145,7 +143,7 @@ namespace MarathonSkillsApp.Pages
                 MessageBox.Show("Вам должно быть не менее 10 лет.");
                 return;
             }
-            if (gender == null || country == null || string.IsNullOrEmpty(selectedPhotoPath))
+            if (gender == null || country == null || photoByte.Length<0)
             {
                 MessageBox.Show("Пожалуйста, заполните все поля и выберите фотографию.");
                 return;
@@ -160,8 +158,6 @@ namespace MarathonSkillsApp.Pages
                     return;
                 }
 
-                // Копируем фото в папку проекта
-                string photoFileName = System.IO.Path.GetFileName(selectedPhotoPath);
 
                 var newUser = new User
                 {
@@ -178,7 +174,7 @@ namespace MarathonSkillsApp.Pages
                     Gender = gender.Value,
                     DateOfBirth = birthDate.Value,
                     CountryCode = country.Value,
-                    Photo = photoFileName
+                    Photo = photoByte
                 };
 
                 context.User.Add(newUser);

@@ -30,7 +30,7 @@ namespace MarathonSkillsApp.Pages
         public VolunteerImportPage()
         {
             InitializeComponent();
-            this.Laded += Page_Loaded;
+            this.Loaded += Page_Loaded;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -84,89 +84,78 @@ namespace MarathonSkillsApp.Pages
                 return;
             }
 
-            try
+
+            int added = 0;
+            int updated = 0;
+
+            var lines = File.ReadAllLines(_selectedFilePath, Encoding.UTF8);
+            if (lines.Length < 2)
             {
-                int added = 0;
-                int updated = 0;
+                MessageBox.Show("Файл не содержит данных.");
+                return;
+            }
 
-                var lines = File.ReadAllLines(_selectedFilePath, Encoding.UTF8);
-                if (lines.Length < 2)
-                {
-                    MessageBox.Show("Файл не содержит данных.");
-                    return;
-                }
+            using (var context = new mrthnskillsEntities())
+            {
 
-                using (var context = new mrthnskillsEntities())
+
+                for (int i = 1; i < lines.Length; i++) 
                 {
-                    using (var transaction = context.Database.BeginTransaction())
+                    var parts = lines[i].Split(',');
+                    if (parts.Length < 5) 
                     {
-                        try
+                        MessageBox.Show($"Некорректная строка в файле на строке {i + 1}. Пропускаем.");
+                        continue;
+                    }
+
+                    string idStr = parts[0].Trim();
+                    string firstName = parts[1].Trim();
+                    string lastName = parts[2].Trim();
+                    string countryCode = parts[3].Trim();
+                    string genderRaw = parts[4].Trim().ToUpper();
+                    string gender = genderRaw.Length == 1 ? (genderRaw == "M" ? "Male" : "Female") : genderRaw;
+
+                    if (!int.TryParse(idStr, out int volunteerId))
+                    {
+                        MessageBox.Show($"Некорректный ID в строке {i + 1}. Пропускаем.");
+                        continue;
+                    }
+
+                    var existing = context.Volunteer.FirstOrDefault(v => v.VolunteerId == volunteerId);
+
+                    if (existing != null)
+                    {
+                        existing.FirstName = firstName;
+                        existing.LastName = lastName;
+                        existing.CountryCode = countryCode;
+                        existing.Gender = gender;
+                        updated++;
+                    }
+                    else
+                    {
+                        context.Volunteer.Add(new Volunteer
                         {
-                            for (int i = 1; i < lines.Length; i++) // пропускаем заголовок
-                            {
-                                var parts = lines[i].Split(',');
-                                if (parts.Length < 5) // проверяем на 5 элементов, так как есть 5 полей
-                                {
-                                    MessageBox.Show($"Некорректная строка в файле на строке {i + 1}. Пропускаем.");
-                                    continue;
-                                }
-
-                                string idStr = parts[0].Trim();
-                                string firstName = parts[1].Trim();
-                                string lastName = parts[2].Trim();
-                                string countryCode = parts[3].Trim();
-                                string genderRaw = parts[4].Trim().ToUpper();
-                                string gender = genderRaw.Length == 1 ? (genderRaw == "M" ? "Male" : "Female") : genderRaw;
-
-                                if (!int.TryParse(idStr, out int volunteerId))
-                                {
-                                    MessageBox.Show($"Некорректный ID в строке {i + 1}. Пропускаем.");
-                                    continue;
-                                }
-
-                                var existing = context.Volunteer.FirstOrDefault(v => v.VolunteerId == volunteerId);
-                                if (existing != null)
-                                {
-                                    existing.FirstName = firstName;
-                                    existing.LastName = lastName;
-                                    existing.CountryCode = countryCode;
-                                    existing.Gender = gender;
-                                    updated++;
-                                }
-                                else
-                                {
-                                    context.Volunteer.Add(new Volunteer
-                                    {
-                                        VolunteerId = volunteerId,
-                                        FirstName = firstName,
-                                        LastName = lastName,
-                                        CountryCode = countryCode,
-                                        Gender = gender,
-                                    });
-                                    added++;
-                                }
-                            }
-
-                            context.SaveChanges();
-                            transaction.Commit();
-
-                            MessageBox.Show($"Импорт завершён!\nДобавлено: {added}\nОбновлено: {updated}", "Успешно");
-
-                            // После импорта всегда переходим на страницу волонтёров, чтобы был актуальный список
-                            NavigationService.Navigate(new VolunteerManagementPage());
-                        }
-                        catch (Exception saveEx)
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show("Ошибка при сохранении в БД: " + saveEx.Message);
-                        }
+                            FirstName = firstName,
+                            LastName = lastName,
+                            CountryCode = countryCode,
+                            Gender = gender,
+                        });
+                        added++;
                     }
                 }
+
+                context.SaveChanges();
+
+                MessageBox.Show($"Импорт завершён!\nДобавлено: {added}\nОбновлено: {updated}", "Успешно");
+
+                // После импорта всегда переходим на страницу волонтёров, чтобы был актуальный список
+                NavigationService.Navigate(new VolunteerManagementPage());
+
+
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при обработке CSV: " + ex.Message);
-            }
+
+
+
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
